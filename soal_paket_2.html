@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tryout PSB Labschool - Paket 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .option-label { transition: all 0.2s; border: 2px solid transparent; }
+        .option-label:hover { background-color: #f1f5f9; }
+        input[type="radio"]:checked + span, input[type="checkbox"]:checked + span { font-weight: 600; color: #1d4ed8; }
+        .selected-option { background-color: #eff6ff; border-color: #3b82f6; }
+        .sticky-header { position: sticky; top: 0; z-index: 50; }
+        .question-nav-btn { width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-size: 0.75rem; transition: all 0.2s; }
+        /* Warna Review */
+.bg-    correct { background-color: #dcfce7 !important; border-color: #22c55e !important; } /* Hijau Muda */
+.bg-    wrong { background-color: #fee2e2 !important; border-color: #ef4444 !important; }    /* Merah Muda */
+.tex    t-correct { color: #15803d; font-weight: bold; }
+.tex    t-wrong { color: #b91c1c; font-weight: bold; }  
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen">
+
+    <!-- Header -->
+    <header class="sticky-header bg-white shadow-sm border-b border-slate-200 p-4">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-lg font-bold text-blue-700 leading-tight">PSB Labschool 2025</h1>
+                <p class="text-xs text-slate-500">Latihan Paket 2</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <div id="timer" class="text-sm font-mono font-bold bg-slate-100 px-3 py-1 rounded border">120:00</div>
+                <button onclick="confirmFinish()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-1.5 rounded-lg text-sm font-semibold shadow-sm transition">Selesai</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto py-6 px-4">
+        
+        <!-- Welcome Screen -->
+        <div id="welcomeScreen" class="bg-white p-8 rounded-2xl shadow-xl text-center">
+            <h2 class="text-2xl font-bold mb-4">Simulasi Ujian Lengkap</h2>
+            <p class="text-slate-600 mb-8">85 Soal sesuai Paket 2 (Indo, Inggris, Numerasi, IPA/IPS, Karakter).</p>
+            <button onclick="startQuiz()" class="bg-blue-600 text-white px-10 py-4 rounded-full text-xl font-bold hover:scale-105 transition transform shadow-lg">Mulai Sekarang</button>
+        </div>
+
+        <!-- Quiz Navigation & Content -->
+        <div id="quizContent" class="hidden">
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-200 h-2 rounded-full mb-6 overflow-hidden">
+                <div id="progressBar" class="bg-blue-600 h-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Question Display -->
+                <div class="flex-1">
+                    <div id="questionContainer" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 min-h-[400px]">
+                        <!-- Injected by JS -->
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex justify-between mt-6 items-center">
+                        <button id="prevBtn" onclick="changeQuestion(-1)" class="bg-slate-200 hover:bg-slate-300 text-slate-700 px-6 py-2 rounded-xl font-bold transition disabled:opacity-30">Kembali</button>
+                        <span id="questionCounter" class="text-sm font-medium text-slate-500">Soal 1 dari 85</span>
+                        <button id="nextBtn" onclick="changeQuestion(1)" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2 rounded-xl font-bold transition">Lanjut</button>
+                    </div>
+                </div>
+
+                <!-- Desktop Sidebar Navigation -->
+                <div class="w-full lg:w-64">
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+                        <h3 class="text-xs font-bold text-slate-400 uppercase mb-3">Navigasi Soal</h3>
+                        <div id="navGrid" class="grid grid-cols-5 gap-2">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="resultScreen" class="hidden bg-white p-8 rounded-2xl shadow-xl text-center">
+            <h2 class="text-3xl font-bold text-blue-700 mb-2">Hasil Ujian</h2>
+            <div id="scoreDisplay" class="text-6xl font-black my-6">0/85</div>
+            <p id="feedbackText" class="text-lg mb-8"></p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="location.reload()" class="bg-slate-200 text-slate-800 px-8 py-3 rounded-xl font-bold">Ulangi Tes</button>
+                <button onclick="showReviewMode()" class="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg">Lihat Pembahasan</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Simple Custom Modal -->
+    <div id="confirmModal" class="hidden fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4">
+        <div class="bg-white p-6 rounded-2xl max-w-sm w-full text-center">
+            <h3 class="text-xl font-bold mb-2">Selesai Ujian?</h3>
+            <p class="text-slate-600 mb-6">Pastikan semua soal telah terjawab. Anda tidak dapat kembali setelah mengirim.</p>
+            <div class="flex gap-3">
+                <button onclick="closeModal()" class="flex-1 py-2 bg-slate-100 rounded-lg font-bold">Batal</button>
+                <button onclick="finishQuiz()" class="flex-1 py-2 bg-red-600 text-white rounded-lg font-bold">Ya, Kirim</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            { 
+        id: 1, 
+        type: 'checkbox', 
+        section: 'Pemahaman Membaca', 
+        text: 'Tentukan pernyataan yang TEPAT dari infografis Perpustakaan Digital.', 
+        image: 'soal_1.jpg', // Tambahkan baris ini
+        options: ['Selisih indeks minat baca 2019-2020 adalah 1,9.', 'Selisih indeks minat baca 2021-2022 melebihi 5.', 'Selisih indeks minat baca 2019-2021 mendekati 6.', 'Kenaikan indeks 2019-2022 melebihi 10.'], 
+        correct: [0, 2, 3], 
+        explanation: '1) 55.74 - 53.84 = 1.9. 3) 59.52 - 53.84 = 5.68 (mendekati 6). 4) 63.9 - 53.84 = 10.06.' 
+    },
+            { id: 2, type: 'checkbox', section: 'Pemahaman Membaca', text: 'Tentukan pernyataan yang TIDAK TEPAT dari infografis.', options: ['Terbitan digital 2019 melebihi 280 ribu.', 'Selisih terbitan 2019-2020 adalah 30.200.', 'Selisih terbitan 2020-2021 melebihi 250 ribu.', 'Jumlah terbitan 2021 & 2022 melebihi 1 juta.'], correct: [2, 3], explanation: 'Selisih 2020-2021 hanya ~207rb. Total 2021+2022 hanya ~978rb.' },
+            { id: 3, type: 'radio', section: 'Pemahaman Membaca', text: 'Aplikasi perpustakaan digital populer kecuali...', options: ['Rakata', 'Amazon Kindle', 'Google Books', 'Yahoo Books'], correct: 3, explanation: 'Yahoo Books tidak ada di infografis.' },
+            { id: 4, type: 'radio', section: 'Pemahaman Membaca', text: 'Kelebihan perpustakaan digital adalah...', options: ['Waktu efisien & murah', 'Minim risiko & perlu internet', 'Koleksi sedikit & ekonomis', 'Suasana nyaman & minim risiko'], correct: 0, explanation: 'Efisiensi waktu dan lebih murah sesuai poin "Plus".' },
+            { id: 5, type: 'radio', section: 'Pemahaman Membaca', text: 'Apa yang ditawarkan pendakian Gunung Bromo?', 
+            image: 'soal_5.jpg',
+            options: ['Pengalaman mendebarkan & pemandangan alam', 'Lautan pasir saja', 'Pasar di puncak', 'Suasana kota'], correct: 0, explanation: 'Teks menyebutkan pengalaman mendebarkan dan pemandangan menakjubkan.' },
+            { id: 6, type: 'checkbox', section: 'Pemahaman Membaca', 
+            text: 'Tentukan informasi yang TIDAK TEPAT mengenai manfaat air putih!', 
+            image: 'soal_6.jpg',
+            options: ['Sembelit teratasi dengan cukup cairan', 'Kalium meningkatkan konsentrasi', 'Metabolisme lemak tidak berhubungan dengan air', 'Tekanan darah sehat tidak berhubungan dengan air'], correct: [2, 3], explanation: 'Infografis menyebut air membantu pecah lemak dan menjaga tekanan darah.' },
+            { id: 7, type: 'radio', section: 'Pemahaman Membaca', 
+            text: 'Kesehatan tulang dapat dijaga dengan konsumsi air yang tepat karena mengandung kalsium.', 
+            image: 'soal_6.jpg',
+            options: ['Benar', 'Salah'], correct: 0, explanation: 'Poin 7 menyebutkan air putih mengandung kalsium baik untuk tulang.' },
+            { id: 8, type: 'radio', section: 'Pemahaman Membaca', 
+            text: 'Urutan plot cerita Zebra dan Gajah yang benar adalah...', 
+            image: 'soal_8.jpg',
+            options: ['2-3-4-1', '1-2-3-4', '4-3-2-1', '2-4-3-1'], correct: 3, explanation: 'Zebra sombong (2) -> Bermain (4) -> Gajah bantu (3) -> Minta maaf (1).' },
+            { id: 9, type: 'checkbox', section: 'Pemahaman Membaca', text: 'Apa yang dilakukan Gajah saat Zebra kesulitan minum?', options: ['Mengambil air dengan belalai', 'Menuangkannya ke tanah', 'Menyiram tubuhnya', 'Mengusir Zebra'], correct: [0, 1], explanation: 'Gajah mengambil air dan menuangkannya ke lubang di tanah.' },
+            { id: 10, type: 'checkbox', section: 'Pemahaman Membaca', text: 'Penyebab perubahan sikap Zebra terhadap Gajah?', options: ['Gajah menawarkan bantuan', 'Gajah menunjukkan kebaikan', 'Gajah membalas ejekan', 'Gajah marah'], correct: [0, 1], explanation: 'Bantuan dan kebaikan Gajah menyadarkan Zebra.' },
+            { id: 11, type: 'radio', section: 'Pemahaman Membaca', text: 'Pesan moral cerita Zebra dan Gajah?', options: ['Sombong itu perlu', 'Kebaikan mengubah sikap orang', 'Warna kulit itu penting', 'Jangan minta maaf'], correct: 1, explanation: 'Kebaikan Gajah mengubah Zebra menjadi tidak sombong.' },
+            { id: 12, type: 'radio', section: 'Pemahaman Membaca', 
+            text: 'Peran Jenderal Soedirman adalah...', 
+            image: 'soal_12.jpg',
+            options: ['Presiden', 'Panglima TKR', 'Menteri Luar Negeri', 'Gubernur'], correct: 1, explanation: 'Beliau adalah Panglima Tentara Keamanan Rakyat.' },
+            { id: 13, type: 'radio', section: 'Pemahaman Membaca', text: 'Sikap Jenderal Soedirman dalam perjuangan?', options: ['Pasif', 'Berkompromi', 'Gigih & semangat juang tinggi', 'Mundur'], correct: 2, explanation: 'Dikenal gigih meski sakit TBC.' },
+            { id: 14, type: 'radio', section: 'Pemahaman Membaca', text: 'Strategi perang yang dicetuskan Soedirman?', options: ['Perang Parit', 'Perang Gerilya', 'Perang Laut', 'Diplomasi'], correct: 1, explanation: 'Pencetus strategi gerilya yang efektif.' },
+            { id: 15, type: 'checkbox', section: 'Pemahaman Membaca', text: 'Simpulan teks Jenderal Soedirman?', options: ['Lahir di Purbolinggo', 'Tokoh militer & pahlawan nasional', 'Meninggal karena TBC', 'Lahir tahun 1950'], correct: [0, 1, 2], explanation: 'Semua benar kecuali tahun lahir (1950 adalah tahun wafat).' },
+            
+            // ENGLISH
+            { id: 16, type: 'radio', section: 'English Reading', text: 'Where do the birds live?', options: ['In the tree', 'On the ground', 'In the house', 'In the sky'], correct: 0, explanation: 'Text says: "They make nests in the tree".' },
+            { id: 17, type: 'radio', section: 'English Reading', text: 'How are the birds?', options: ['Small', 'Slow', 'Lazy', 'Big'], correct: 0, explanation: '"The birds are small".' },
+            { id: 18, type: 'radio', section: 'English Reading', text: 'What is the color of the birds?', options: ['Black & white', 'Black & brown', 'Brown & white', 'Yellow'], correct: 1, explanation: '"Feathers are black and brown".' },
+            { id: 19, type: 'radio', section: 'English Reading', text: 'What do the birds do in the morning?', options: ['Walking', 'Making nests', 'Flying down', 'Chirping'], correct: 3, explanation: '"They make by chirping in the morning".' },
+            { id: 20, type: 'radio', section: 'English Reading', text: 'How does the writer feel about the birds?', options: ['He likes them', 'He hates them', 'He ignores them', 'He wants them gone'], correct: 0, explanation: '"I like the sounds".' },
+            { id: 21, type: 'radio', section: 'English Reading', text: 'Anton: "... I think I get cold." What is the best response?', options: ['I am okay', 'I am fine', 'I do not feel well', 'I am bad'], correct: 2, explanation: 'Appropriate context for getting a cold.' },
+            { id: 22, type: 'radio', section: 'English Reading', text: 'Commonly used to hold liquid, narrow opening for pouring drink. What is it?', options: ['Juicer', 'Kettle', 'Fridge', 'Grater'], correct: 1, explanation: 'Description of a kettle.' },
+            { id: 23, type: 'checkbox', section: 'English Reading', text: 'Which things are found in the bedroom?', options: ['Dressing table', 'Sink', 'Bolster', 'Pillow'], correct: [0, 2, 3], explanation: 'Table, bolster, and pillow are bedroom items.' },
+            { id: 24, type: 'radio', section: 'English Reading', text: 'Arrange: My - is favorite - purple - color.', options: ['My favorite purple is color', 'My color favorite is purple', 'My favorite color is purple', 'Purple favorite color is my'], correct: 2, explanation: 'Standard English SVO structure.' },
+            { id: 25, type: 'radio', section: 'English Reading', text: 'James has a dog. James takes ... for a walk.', options: ['It', 'Him', 'Them', 'Its'], correct: 0, explanation: 'Pronoun for dog (animal) is "it".' },
+
+            // VERBAL INDO
+            { id: 26, type: 'radio', section: 'Verbal Indonesia', text: 'GASAL (Sinonim)', options: ['Aneh', 'Unik', 'Genap', 'Ganjil'], correct: 3, explanation: 'Gasal = Ganjil.' },
+            { id: 27, type: 'radio', section: 'Verbal Indonesia', text: 'ALTERNATIF (Sinonim)', options: ['Cara lain', 'Prosedur', 'Prinsip', 'Mainstream'], correct: 0, explanation: 'Alternatif = pilihan/cara lain.' },
+            { id: 28, type: 'radio', section: 'Verbal Indonesia', text: 'KONTRAS (Sinonim)', options: ['Perpecahan', 'Tidak suram', 'Cerah', 'Perbedaan nyata'], correct: 3, explanation: 'Kontras = perbedaan mencolok.' },
+            { id: 29, type: 'radio', section: 'Verbal Indonesia', text: 'ABSEN (Antonim)', options: ['Hadir', 'Tidak hadir', 'Datang', 'Tidak datang'], correct: 0, explanation: 'Antonim absen (bolos) adalah hadir.' },
+            { id: 30, type: 'radio', section: 'Verbal Indonesia', text: 'PANDAI (Antonim)', options: ['Pintar', 'Cerdas', 'Bodoh', 'Abai'], correct: 2, explanation: 'Lawan kata pandai adalah bodoh.' },
+            { id: 31, type: 'radio', section: 'Verbal Indonesia', text: 'JATUH (Antonim)', options: ['Bangkit', 'Terperosok', 'Malas', 'Terjerembab'], correct: 0, explanation: 'Lawan kata jatuh adalah bangkit.' },
+            { id: 32, type: 'radio', section: 'Verbal Indonesia', text: 'KABEL : KARET = ...', options: ['Sampul : Gores', 'Buku : Sampul', 'Madu : Manis', 'Sampo : Rambut'], correct: 1, explanation: 'Pelindung kabel adalah karet, pelindung buku adalah sampul.' },
+            { id: 33, type: 'radio', section: 'Verbal Indonesia', text: 'SEKOLAH : SISWA : BELAJAR = ...', options: ['Sekolah : Guru : Rapat', 'Laboratorium : Ilmuwan : Meneliti', 'Rumah : Ayah : Ibu', 'Dokter : Pasien : Periksa'], correct: 1, explanation: 'Tempat : Orang : Aktivitas.' },
+            { id: 34, type: 'radio', section: 'Verbal Indonesia', text: 'IKAN : CUPANG = ...', options: ['Keyboard : Komputer', 'Buku : Perpustakaan', 'Botol : Plastik', 'Kucing : Anggora'], correct: 3, explanation: 'Genus : Spesies/Jenis.' },
+            { id: 35, type: 'radio', section: 'Verbal Indonesia', text: 'PELUKIS : GAMBAR = ...', options: ['Penyair : Puisi', 'Koki : Restoran', 'Kartunis : Pena', 'Komposer : Lagu'], correct: 3, explanation: 'Profesi : Hasil Karya.' },
+
+            // VERBAL ENGLISH
+            { id: 36, type: 'radio', section: 'Verbal English', text: 'ADMIRE (Synonym)', options: ['Praise', 'Quality', 'Possess', 'Insult'], correct: 0, explanation: 'Admire = respect/praise.' },
+            { id: 37, type: 'radio', section: 'Verbal English', text: 'ADULT (Synonym)', options: ['Infant', 'Juvenile', 'Mature', 'Undeveloped'], correct: 2, explanation: 'Adult = mature.' },
+            { id: 38, type: 'radio', section: 'Verbal English', text: 'MANY (Synonym)', options: ['A few', 'Some', 'None', 'A lot'], correct: 3, explanation: 'Many = a lot.' },
+            { id: 39, type: 'radio', section: 'Verbal English', text: 'ELIGIBLE (Antonym)', options: ['Disqualified', 'Undesirable', 'Proper', 'Clumsy'], correct: 1, explanation: 'Lawan kata eligible (layak) adalah undesirable (tidak diinginkan/tidak cocok).' },
+            { id: 40, type: 'checkbox', section: 'Verbal English', text: 'NOTHING (Antonym)', options: ['Something', 'Anything', 'Everything', 'Someone'], correct: [0, 1, 2], explanation: 'Something/Anything/Everything are opposites.' },
+            { id: 41, type: 'radio', section: 'Verbal English', text: 'FULLY (Antonym)', options: ['Partially', 'Completely', 'Finally', 'Totally'], correct: 0, explanation: 'Fully vs Partially.' },
+            { id: 42, type: 'radio', section: 'Verbal English', text: 'SPAGHETTI : PASTA = ...', options: ['Ketchup : Condiment', 'Lettuce : Sauce', 'Bacon : Fruit', 'Cereal : Dairy'], correct: 0, explanation: 'Spaghetti is a type of pasta.' },
+            { id: 43, type: 'radio', section: 'Verbal English', text: 'ATHLETE : FIT = ...', options: ['Chef : Fat', 'Dog : Energetic', 'Priest : Religious', 'Dancer : Intelligent'], correct: 2, explanation: 'Core characteristic.' },
+            { id: 44, type: 'radio', section: 'Verbal English', text: 'MICROWAVE : HEAT = ...', options: ['Refrigerator : Cool', 'Freezer : Cook', 'Sink : Organize', 'Fireplace : Destroy'], correct: 0, explanation: 'Function of tool.' },
+            { id: 45, type: 'radio', section: 'Verbal English', text: 'COMEDY : FUNNY = ...', options: ['Mystery : Boring', 'Drama : Romantic', 'Tragedy : Sad', 'Newspaper : Expensive'], correct: 2, explanation: 'Core emotion/feel.' },
+
+            // NUMERASI
+            { id: 46, type: 'radio', section: 'Numerasi', 
+            text: 'Harga 1g emas = 1.066.000, 0.5g = 583.000. Biaya termurah beli 1,5g?', 
+            image: 'soal_46.jpg',
+            options: ['1.579.000', '1.649.000', '1.749.000', '1.908.000'], correct: 1, explanation: '1.066.000 + 583.000 = 1.649.000.' },
+            { id: 47, type: 'checkbox', section: 'Numerasi', text: 'Pernyataan benar tentang harga emas?', options: ['1g lebih mahal dari 2 keping 0.5g', 'Beli 2 keping 0.5g lebih murah dari 4 keping 0.25g', '3g bisa terdiri dari 2 keping 1g dan 2 keping 0.5g', '0.25g + 0.5g = 920.000'], correct: [1, 2], explanation: '2x0.5g=1.166rb vs 4x0.25g=1.272rb. 2x1g + 2x0.5g = 3g.' },
+            { id: 48, type: 'checkbox', section: 'Numerasi', text: 'Komposisi kepingan 2,5 gram emas?', options: ['2 keping 1g + 1 keping 0.5g', '3 keping 0.5g + 1 keping 1g', '5 keping 0.5g', '2 keping 1g + 2 keping 0.25g'], correct: [0, 1, 2, 3], explanation: 'Semua kombinasi menghasilkan 2.5 gram.' },
+            { id: 49, type: 'checkbox', section: 'Numerasi', text: 'Bawa uang 1.750.000. Apa yang bisa dibeli?', options: ['1 keping 1g + 1 keping 0.5g', '3 keping 0.5g', '1 keping 1g + 3 keping 0.25g', '2 keping 0.5g + 2 keping 0.25g'], correct: [0, 1, 2, 3], explanation: 'Semua total biaya di bawah 1.750.000.' },
+            { id: 50, type: 'radio', section: 'Numerasi', text: 'Total harga 1 keping 1g + 2 keping 0.25g?', 
+            image: 'soal_50.jpg',
+            options: ['1.384.000', '1.516.000', '1.649.000', '1.702.000'], correct: 3, explanation: '1.066.000 + (2 x 318.000) = 1.066.000 + 636.000 = 1.702.000.' },
+            { id: 51, type: 'radio', section: 'Numerasi', 
+            text: 'Pengguna media sosial terbanyak terjadi pada?', 
+            image: 'soal_51.jpg',
+            options: ['Jan 2019', 'Jan 2020', 'Jan 2021', 'Jan 2022'], correct: 3, explanation: 'Data grafik tertinggi 191 juta di 2022.' },
+            { id: 52, type: 'checkbox', section: 'Numerasi', text: 'Pernyataan sesuai data media sosial?', options: ['Paling banyak Jan 2022', 'Selalu naik dari 2014-2022', 'Jan 2014 masih sedikit', '2019 lebih banyak dari 2020'], correct: [0, 1, 2], explanation: 'Data menunjukkan tren kenaikan setiap tahun.' },
+            { id: 53, type: 'radio', section: 'Numerasi', text: 'Total pengguna 2014-2015 (62jt + 72jt)?', options: ['134 juta', '185 juta', '280 juta', '330 juta'], correct: 0, explanation: '62 + 72 = 134.' },
+            { id: 54, type: 'radio', section: 'Numerasi', text: 'Peta 2cm, skala 1:300.000. Jarak sesungguhnya?', 
+            image: 'soal_54.jpg',
+            options: ['3 km', '4 km', '5 km', '6 km'], correct: 3, explanation: '2 x 300.000 = 600.000 cm = 6 km.' },
+            { id: 55, type: 'radio', section: 'Numerasi', text: 'Jarak rumah ke sekolah 2x jarak ke pasar (6km). Benar/Salah jaraknya 12km?', options: ['Benar', 'Salah'], correct: 0, explanation: '6 x 2 = 12 km.' },
+            { id: 56, type: 'radio', section: 'Numerasi', text: '128 + 72 - 8 x 12 : 4 = ...', options: ['144', '176', '224', '576'], correct: 1, explanation: '200 - (96:4) = 200 - 24 = 176.' },
+            { id: 57, type: 'radio', section: 'Numerasi', text: 'Umur Dewi : Yuni = 2 : 3. Total 20 tahun. Umur mereka?', options: ['8 & 11', '14 & 6', '8 & 12', '7 & 13'], correct: 2, explanation: '2/5 x 20 = 8, 3/5 x 20 = 12.' },
+            { id: 58, type: 'radio', section: 'Numerasi', text: 'Pembilang : Penyebut = 5 : 9. Selisih 16. Pecahan?', options: ['10/26', '20/36', '21/37', '25/41'], correct: 1, explanation: '9x - 5x = 16 -> 4x=16 -> x=4. 5*4/9*4 = 20/36.' },
+            { id: 59, type: 'radio', section: 'Numerasi', text: 'Volume prisma (Alas trapesium: 12, 20, tinggi 15. Kedalaman 10)?', 
+            image: 'soal_59.jpg',
+            options: ['2.400', '3.750', '4.375', '5.375'], correct: 0, explanation: '(12+20)*15/2 * 10 = 32*15/2 * 10 = 16*15*10 = 2400.' },
+            { id: 60, type: 'radio', section: 'Numerasi', text: 'Beli 24 mainan 640rb. 8 rusak. Sisa jual 34rb/pc. % Rugi?', options: ['30%', '25%', '15%', '10%'], correct: 2, explanation: 'Jual 16 x 34rb = 544rb. Rugi 640 - 544 = 96rb. 96/640 * 100 = 15%.' },
+
+            // IPA/IPS
+            { id: 61, type: 'radio', section: 'IPA/IPS', text: 'Skema PLT Angin: Perubahan energi?', 
+            image: 'soal_61.jpg',
+            options: ['Cahaya -> Gerak -> Angin', 'Angin -> Gerak -> Listrik -> Cahaya/Panas', 'Listrik -> Gerak -> Angin', 'Gerak -> Angin -> Listrik'], correct: 1, explanation: 'Urutan standar konversi energi angin.' },
+            { id: 62, type: 'radio', section: 'IPA/IPS', text: 'Adaptasi kaktus?', options: ['Akar tunggang, batang stolon', 'Akar serabut, batang berongga', 'Daun lebar, stomata banyak', 'Akar panjang, batang simpan air, daun duri'], correct: 3, explanation: 'Adaptasi xerofit (lingkungan kering).' },
+            { id: 63, type: 'radio', section: 'IPA/IPS', text: 'Akibat penebangan hutan bagi ekosistem?', 
+            image: 'soal_63.jpg',
+            options: ['Kehilangan penghasilan', 'Binatang kehilangan tempat tinggal/makan', 'Tempat bermain hilang', 'Migrasi binatang darat ke air'], correct: 1, explanation: 'Dampak langsung pada rantai makanan dan habitat.' },
+            { id: 64, type: 'radio', section: 'IPA/IPS', text: 'Dongkrak mobil menggunakan prinsip?', 
+            image: 'soal_64.jpg',
+            options: ['Tuas', 'Gerigi', 'Bidang miring', 'Katrol'], correct: 0, explanation: 'Dongkrak putar menggunakan prinsip tuas (pengungkit).' },
+            { id: 65, type: 'checkbox', section: 'IPA/IPS', text: 'Ciri tumbuhan xerofit?', options: ['Akar panjang', 'Batang simpan air', 'Daun kecil/tebal', 'Banyak stomata'], correct: [0, 1, 2], explanation: 'Stomata sedikit untuk kurangi penguapan.' },
+            { id: 66, type: 'radio', section: 'IPA/IPS', text: 'Bagian rhizoma yang dukung akar baru?', options: ['Pangkal daun', 'Ujung tunas', 'Ujung batang', 'Ruas-ruasnya'], correct: 3, explanation: 'Rhizoma tumbuh dari ruas-ruas batang di bawah tanah.' },
+            { id: 67, type: 'radio', section: 'IPA/IPS', text: 'Perlindungan insitu?', options: ['Taman Nasional Komodo', 'Kebun Binatang Ragunan', 'Taman Anggrek TMII', 'Kebun Raya Bogor'], correct: 0, explanation: 'Insitu = di habitat asli.' },
+            { id: 68, type: 'radio', section: 'IPA/IPS', text: 'Fungsi benang sari (X)?', 
+            image: 'soal_68.jpg',
+            options: ['Pembuahan', 'Sel telur', 'Sel kelamin jantan', 'Perhiasan'], correct: 2, explanation: 'Alat reproduksi jantan.' },
+            { id: 69, type: 'radio', section: 'IPA/IPS', text: 'Fungsi kulit lembab cacing?', options: ['Mendinginkan', 'Zat sisa', 'Gerak', 'Pernapasan (tukar gas)'], correct: 3, explanation: 'Cacing bernapas melalui kulit.' },
+            { id: 70, type: 'radio', section: 'IPA/IPS', text: 'Komponen darah yang turun saat DBD?', options: ['Hemoglobin', 'Trombosit', 'Leukosit', 'Eritrosit'], correct: 1, explanation: 'DBD menyerang kadar trombosit.' },
+            { id: 71, type: 'radio', section: 'IPA/IPS', text: 'Pulau di wilayah WITA?', 
+            image: 'soal_71.jpg',
+            options: ['Sulawesi, Papua', 'Sumatera, Jawa', 'Kalimantan (sebagian), Sulawesi, Bali', 'Jawa, Bali'], correct: 2, explanation: 'Bali, Sulawesi, NTB/NTT, Kaltim/Kalsel.' },
+            { id: 72, type: 'radio', section: 'IPA/IPS', text: 'Contoh produksi oleh pemerintah daerah?', options: ['Air minum PDAM', 'Bank BRI', 'Listrik PLN', 'Radio RRI'], correct: 0, explanation: 'PDAM dikelola oleh Pemda.' },
+            { id: 73, type: 'radio', section: 'IPA/IPS', text: 'Bidang industri (olah bahan mentah jadi barang jadi)?', options: ['Kayu & Ikan', 'Kaleng & Tekstil', 'Kopi & Minyak', 'Pengeboran'], correct: 1, explanation: '3 dan 4 adalah pengolahan.' },
+            { id: 74, type: 'radio', section: 'IPA/IPS', text: 'Dampak globalisasi bidang komunikasi?', options: ['Bahasa asing dibutuhkan', 'Cara berpakaian beragam', 'Restoran Jepang ada', 'Perjalanan singkat'], correct: 0, explanation: 'Komunikasi antarnegara memicu kebutuhan bahasa.' },
+            { id: 75, type: 'radio', section: 'IPA/IPS', text: 'Manfaat impor?', options: ['Buka lapangan kerja', 'Tambah devisa', 'Penuhi kebutuhan konsumen dalam negeri', 'Perluas pasar lokal'], correct: 2, explanation: 'Impor memenuhi barang yang tidak ada di dalam negeri.' },
+
+            // KARAKTER
+            { id: 76, type: 'radio', section: 'Karakter', text: 'Ando merpakan teman sebangku Dino. Ando sering diejek teman-teman sekolahnya karena badannya gemuk dan pendek. Dino kasihan pada Ando, tetapi dia takut dijauhi teman lainnya jika berteman dengan Ando. Tindakan yag seharusnya dilakukan Dino adalah ....', options: ['Membela Ando', 'Jaga jarak', 'Tetap berteman', 'Berteman diam-diam'], correct: 2, explanation: 'Inklusi dan empati.' },
+            { id: 77, type: 'radio', section: 'Karakter', text: 'Tidak ada tempat sampah untuk botol bekas. Sikap?', options: ['Buang sembunyi', 'Buang di pinggir jalan', 'Bawa pulang', 'Simpan sampai ada tempat sampah'], correct: 3, explanation: 'Tanggung jawab lingkungan.' },
+            { id: 78, type: 'radio', section: 'Karakter', text: 'Temukan uang di halaman sekolah. Sikap?', options: ['Serahkan ke guru', 'Biar saja', 'Tanya teman', 'Bawa pulang'], correct: 0, explanation: 'Integritas.' },
+            { id: 79, type: 'radio', section: 'Karakter', text: 'Sepeda di trotoar saat macet. Sikap Hamzah?', options: ['Ganggu lalin', 'Ganggu pejalan kaki', 'Bagus agar tak telat', 'Biasa saja'], correct: 1, explanation: 'Etika fasilitas umum.' },
+            { id: 80, type: 'checkbox', section: 'Karakter', text: 'Debat sampah: Jual vs Kerajinan. Mediator bersikap?', options: ['Jadi penengah efektif', 'Dukung yang solutif & efisien', 'Diam saja', 'Dukung yang cepat'], correct: [0, 1], explanation: 'Penyelesaian masalah secara bijak.' },
+            { id: 81, type: 'checkbox', section: 'Karakter', text: 'Mencegah korupsi dana desa (langkah kecil)?', options: ['Ikut pelatihan nilai baik', 'Ikut ekstrakurikuler antikorupsi', 'Berlatih jujur', 'Anjurkan lembaga tanggap korupsi'], correct: [0, 1, 2, 3], explanation: 'Semua langkah preventif.' },
+            { id: 82, type: 'radio', section: 'Karakter', text: 'Hasil musyawarah tidak sesuai keinginan. Sikap?', options: ['Diam tapi kesal', 'Protes', 'Lakukan jika suka', 'Hormati & laksanakan'], correct: 3, explanation: 'Demokrasi.' },
+            { id: 83, type: 'checkbox', section: 'Karakter', 
+            text: 'Dalam rangka memperingati hari ulang tahun sekolah, seorang guru memberi tugas untuk membuat kerajinan tangan dari bahan bekas. Guru menyampaikan bahwa akan hadiah uang tunai cukup besar untuk karya terbaik. Pada waktu yang sama ada salah satu anggota keluarga ada yang sakit dan membutuhkan biaya cukup besar untuk opname. Tindakan yang dapat kamu lakukan adalah...', options: ['Berusaha maksimal meski sulit', 'Bekerja sama dengan teman kreatif', 'Beli karya orang', 'Sewa jasa orang'], correct: [0, 1], explanation: 'Kejujuran akademis.' },
+            { id: 84, type: 'radio', section: 'Karakter', text: 'Pegang uang sumbangan teman tapi ibu butuh bayar sewa. Sikap Alan?', options: ['Kasih ibu semua', 'Kasih ibu sebagian', 'Segera berikan sumbangan', 'Pinjam dulu'], correct: 2, explanation: 'Amanah/Kepercayaan.' },
+            { id: 85, type: 'checkbox', section: 'Karakter', text: 'Warga minta umumkan kematian saat subuh. Sikap Muazin?', options: ['Iya, tapi azan dulu', 'Azan dulu baru umumkan', 'Cek duka dulu', 'Abaikan'], correct: [0, 1], explanation: 'Prioritas ibadah dan kemanusiaan.' }
+        ];
+
+        let currentIndex = 0;
+        let userAnswers = {};
+        let timeLeft = 120 * 60;
+        let timerId;
+        let reviewMode = false;
+
+        function startQuiz() {
+            document.getElementById('welcomeScreen').classList.add('hidden');
+            document.getElementById('quizContent').classList.remove('hidden');
+            renderNavGrid();
+            showQuestion(0);
+            startTimer();
+        }
+
+        function renderNavGrid() {
+            const grid = document.getElementById('navGrid');
+            grid.innerHTML = '';
+            questions.forEach((q, i) => {
+                const btn = document.createElement('button');
+                btn.id = `nav-btn-${i}`;
+                btn.className = 'question-nav-btn border border-slate-300 text-slate-400 bg-white hover:border-blue-500';
+                btn.innerText = i + 1;
+                btn.onclick = () => showQuestion(i);
+                grid.appendChild(btn);
+            });
+            updateNavUI();
+        }
+
+        function checkCorrectness(q) {
+    const userAns = userAnswers[q.id];
+    if (q.type === 'checkbox') {
+        return JSON.stringify((userAns || []).sort()) === JSON.stringify(q.correct.sort());
+    }
+    return userAns === q.correct;
+}
+
+        function updateNavUI() {
+            questions.forEach((q, i) => {
+                const btn = document.getElementById(`nav-btn-${i}`);
+                const answered = userAnswers[q.id] !== undefined;
+                
+                btn.classList.remove('bg-blue-600', 'text-white', 'bg-green-100', 'border-green-500');
+                
+                if (i === currentIndex) {
+                    btn.classList.add('ring-2', 'ring-blue-400', 'z-10');
+                } else {
+                    btn.classList.remove('ring-2', 'ring-blue-400');
+                }
+
+                if (answered) {
+                    btn.classList.add('bg-blue-50', 'text-blue-600', 'border-blue-400');
+                }
+            });
+        }
+
+function showQuestion(index) {
+            currentIndex = index;
+            const q = questions[index];
+            const container = document.getElementById('questionContainer');
+            
+            const imageHtml = q.image ? `<img src="${q.image}" class="w-full max-w-2xl mx-auto mb-6 rounded-xl shadow-sm border border-slate-200" alt="Gambar Soal">` : '';
+
+            let optionsHtml = '';
+            q.options.forEach((opt, oi) => {
+                const inputType = q.type === 'checkbox' ? 'checkbox' : 'radio';
+                const isChecked = q.type === 'checkbox' 
+                    ? (userAnswers[q.id] || []).includes(oi)
+                    : userAnswers[q.id] === oi;
+                
+                // Logika Pewarnaan Review
+                let reviewClass = 'border-slate-100';
+                let statusLabel = '';
+
+                if (reviewMode) {
+                    const isThisCorrect = q.type === 'checkbox' ? q.correct.includes(oi) : q.correct === oi;
+                    if (isThisCorrect) {
+                        reviewClass = 'bg-correct';
+                        statusLabel = '<span class="text-correct ml-auto text-xs">Benar!</span>';
+                    } else if (isChecked) {
+                        reviewClass = 'bg-wrong';
+                        statusLabel = '<span class="text-wrong ml-auto text-xs">Salah!</span>';
+                    }
+                } else if (isChecked) {
+                    reviewClass = 'selected-option';
+                }
+
+                optionsHtml += `
+                    <label class="option-label flex items-center gap-4 p-4 rounded-xl border-2 mb-3 ${reviewMode ? 'review-locked pointer-events-none' : 'cursor-pointer'} ${reviewClass}">
+                        <input type="${inputType}" name="q${q.id}" value="${oi}" 
+                               ${isChecked ? 'checked' : ''} 
+                               ${reviewMode ? 'disabled' : ''}
+                               onchange="saveAnswer(${q.id}, ${oi}, '${q.type}')"
+                               class="w-5 h-5 text-blue-600">
+                        <span class="text-slate-700 leading-tight">${opt}</span>
+                        ${statusLabel}
+                    </label>
+                `;
+            });
+
+            container.innerHTML = `
+                <div class="mb-4">
+                    <span class="text-[10px] font-black uppercase tracking-widest text-blue-500">${q.section}</span>
+                    <h2 class="text-xl font-bold mt-1">Soal Ke-${q.id}</h2>
+                </div>
+                ${imageHtml}
+                <p class="text-lg text-slate-800 mb-6 leading-relaxed">${q.text}</p>
+                <div class="space-y-1">${optionsHtml}</div>
+                
+                <div id="review-box" class="${reviewMode ? 'block' : 'hidden'} mt-8 p-4 bg-amber-50 rounded-xl border border-amber-200">
+                    <h4 class="font-bold text-amber-800 mb-1 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                        </svg>
+                        Pembahasan
+                    </h4>
+                    <p class="text-sm text-amber-900 leading-relaxed">${q.explanation}</p>
+                </div>
+            `;
+
+            document.getElementById('questionCounter').innerText = `Soal ${index + 1} dari ${questions.length}`;
+            document.getElementById('progressBar').style.width = `${((index + 1) / questions.length) * 100}%`;
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').innerText = index === questions.length - 1 ? (reviewMode ? 'Tutup' : 'Selesai') : 'Lanjut';
+            
+            updateNavUI();
+        }
+
+        function saveAnswer(qId, val, type) {
+            if (reviewMode) return;
+            if (type === 'checkbox') {
+                if (!userAnswers[qId]) userAnswers[qId] = [];
+                const idx = userAnswers[qId].indexOf(val);
+                if (idx > -1) userAnswers[qId].splice(idx, 1);
+                else userAnswers[qId].push(val);
+            } else {
+                userAnswers[qId] = val;
+            }
+            showQuestion(currentIndex); // Refresh UI to show selection
+        }
+
+        function changeQuestion(step) {
+            const nextIdx = currentIndex + step;
+            if (nextIdx >= 0 && nextIdx < questions.length) {
+                showQuestion(nextIdx);
+            } else if (nextIdx === questions.length) {
+                confirmFinish();
+            }
+        }
+
+        function startTimer() {
+            timerId = setInterval(() => {
+                timeLeft--;
+                let mins = Math.floor(timeLeft / 60);
+                let secs = timeLeft % 60;
+                document.getElementById('timer').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+                if (timeLeft <= 0) finishQuiz();
+            }, 1000);
+        }
+
+        function confirmFinish() {
+            document.getElementById('confirmModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('confirmModal').classList.add('hidden');
+        }
+
+        function finishQuiz() {
+            closeModal();
+            clearInterval(timerId);
+            let score = 0;
+
+            questions.forEach(q => {
+                const userAns = userAnswers[q.id];
+                let correct = false;
+                if (q.type === 'checkbox') {
+                    correct = JSON.stringify((userAns || []).sort()) === JSON.stringify(q.correct.sort());
+                } else {
+                    correct = userAns === q.correct;
+                }
+                if (correct) score++;
+            });
+
+            document.getElementById('quizContent').classList.add('hidden');
+            document.getElementById('resultScreen').classList.remove('hidden');
+            document.getElementById('scoreDisplay').innerText = `${score} / ${questions.length}`;
+            
+            if (score > 75) document.getElementById('feedbackText').innerText = "Luar Biasa! Skor Anda sangat tinggi. Pertahankan!";
+            else if (score > 50) document.getElementById('feedbackText').innerText = "Kerja Bagus! Tingkatkan lagi pemahaman di materi yang salah.";
+            else document.getElementById('feedbackText').innerText = "Jangan menyerah, ulangi lagi dan pelajari pembahasannya.";
+        }
+
+        function showReviewMode() {
+            reviewMode = true;
+            document.getElementById('resultScreen').classList.add('hidden');
+            document.getElementById('quizContent').classList.remove('hidden');
+            showQuestion(0);
+        }
+    </script>
+</body>
+</html>
