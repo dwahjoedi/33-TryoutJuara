@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tryout PSB Labschool - Paket 3</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .option-label { transition: all 0.2s; border: 2px solid transparent; }
+        .option-label:hover { background-color: #f1f5f9; }
+        input[type="radio"]:checked + span, input[type="checkbox"]:checked + span { font-weight: 600; color: #1d4ed8; }
+        .selected-option { background-color: #eff6ff; border-color: #3b82f6; }
+        .sticky-header { position: sticky; top: 0; z-index: 50; }
+        .question-nav-btn { width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-size: 0.75rem; transition: all 0.2s; }
+        .correct-border { border-color: #10b981 !important; background-color: #ecfdf5 !important; }
+        .wrong-border { border-color: #ef4444 !important; background-color: #fef2f2 !important; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen">
+
+    <!-- Header -->
+    <header class="sticky-header bg-white shadow-sm border-b border-slate-200 p-4">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-lg font-bold text-blue-700 leading-tight">PSB Labschool 2025</h1>
+                <p class="text-xs text-slate-500 font-medium">Latihan Paket 3</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <div id="timer" class="text-sm font-mono font-bold bg-slate-100 px-3 py-1 rounded border">120:00</div>
+                <button onclick="confirmFinish()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-1.5 rounded-lg text-sm font-semibold shadow-sm transition">Selesai</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto py-6 px-4">
+        
+        <!-- Welcome Screen -->
+        <div id="welcomeScreen" class="bg-white p-8 rounded-2xl shadow-xl text-center">
+            <h2 class="text-2xl font-bold mb-4">Simulasi Ujian Paket 3</h2>
+            <p class="text-slate-600 mb-8 leading-relaxed">Aplikasi ini telah diperbarui dengan 85 soal terbaru dari Paket 3.<br>Gunakan navigasi untuk berpindah soal dan lihat pembahasan di akhir ujian.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-xs font-bold uppercase tracking-wider">
+                <div class="p-3 bg-blue-50 rounded-lg text-blue-700">Indo Reading<br>15 Soal</div>
+                <div class="p-3 bg-blue-50 rounded-lg text-blue-700">English Reading<br>10 Soal</div>
+                <div class="p-3 bg-blue-50 rounded-lg text-blue-700">Verbal<br>20 Soal</div>
+                <div class="p-3 bg-blue-50 rounded-lg text-blue-700">Numerasi<br>15 Soal</div>
+            </div>
+            <button onclick="startQuiz()" class="bg-blue-600 text-white px-10 py-4 rounded-full text-xl font-bold hover:scale-105 transition transform shadow-lg">Mulai Sekarang</button>
+        </div>
+
+        <!-- Quiz Navigation & Content -->
+        <div id="quizContent" class="hidden">
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-200 h-2 rounded-full mb-6 overflow-hidden">
+                <div id="progressBar" class="bg-blue-600 h-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Question Display -->
+                <div class="flex-1">
+                    <div id="questionContainer" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 min-h-[450px]">
+                        <!-- Injected by JS -->
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex justify-between mt-6 items-center">
+                        <button id="prevBtn" onclick="changeQuestion(-1)" class="bg-slate-200 hover:bg-slate-300 text-slate-700 px-6 py-2 rounded-xl font-bold transition disabled:opacity-30">Kembali</button>
+                        <span id="questionCounter" class="text-sm font-medium text-slate-500">Soal 1 dari 85</span>
+                        <button id="nextBtn" onclick="changeQuestion(1)" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2 rounded-xl font-bold transition">Lanjut</button>
+                    </div>
+                </div>
+
+                <!-- Desktop Sidebar Navigation -->
+                <div class="w-full lg:w-64">
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+                        <h3 class="text-xs font-bold text-slate-400 uppercase mb-3">Navigasi Soal</h3>
+                        <div id="navGrid" class="grid grid-cols-5 gap-2 max-h-[400px] overflow-y-auto pr-1">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="resultScreen" class="hidden bg-white p-8 rounded-2xl shadow-xl text-center">
+            <h2 class="text-3xl font-bold text-blue-700 mb-2">Hasil Ujian Paket 3</h2>
+            <div id="scoreDisplay" class="text-6xl font-black my-6">0/85</div>
+            <p id="feedbackText" class="text-lg mb-8"></p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="location.reload()" class="bg-slate-200 text-slate-800 px-8 py-3 rounded-xl font-bold">Ulangi Tes</button>
+                <button onclick="showReviewMode()" class="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg">Lihat Pembahasan</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Custom Modal -->
+    <div id="confirmModal" class="hidden fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4">
+        <div class="bg-white p-6 rounded-2xl max-w-sm w-full text-center shadow-2xl">
+            <h3 class="text-xl font-bold mb-2">Selesai Ujian?</h3>
+            <p class="text-slate-600 mb-6 text-sm">Pastikan semua soal Paket 3 telah terjawab. Anda dapat melihat pembahasan setelah mengirim.</p>
+            <div class="flex gap-3">
+                <button onclick="closeModal()" class="flex-1 py-2 bg-slate-100 rounded-lg font-bold">Batal</button>
+                <button onclick="finishQuiz()" class="flex-1 py-2 bg-red-600 text-white rounded-lg font-bold">Ya, Kirim</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data Soal Paket 3 (85 Soal Lengkap)
+        const questions = [
+            // INDONESIA READING (1-15)
+            { id: 1, type: 'radio', section: 'Pemahaman Membaca', text: 'Apa yang menjadi salah satu aspek penting dari Kebun Raya Bogor menurut teks?', options: ['Variasi jenis koleksi tanaman', 'Sejarah Indonesia', 'Museum dan Laboratorium Zoologi', 'Pemerintah Belanda'], correct: 0, explanation: 'Teks menyebutkan variasi jenis tanaman sebagai salah satu aspek penting.' },
+            { id: 2, type: 'radio', section: 'Pemahaman Membaca', text: 'Apa yang telah dihasilkan dari pusat penelitian botani tropis Kebun Raya Bogor?', options: ['Teknologi Internet', 'Inovasi dalam agroindustri', 'Sejarah Indonesia', 'Reputasi sejarah'], correct: 1, explanation: 'Inovasi dalam agroindustri kopi, teh, kina, dsb.' },
+            { id: 3, type: 'checkbox', section: 'Pemahaman Membaca', text: 'Lembaga penelitian yang lahir seiring dengan berdirinya Kebun Raya Bogor adalah...', options: ['Bibliotheca Bogoriensis', 'Herbarium Bogoriense', 'Kebun Raya Cibodas', 'Laboratorium Treub'], correct: [0, 1, 2, 3], explanation: 'Semua lembaga tersebut disebutkan lahir seiring KRB.' },
+            { id: 4, type: 'checkbox', section: 'Pemahaman Membaca', text: 'Apa kontribusi Kebun Raya Bogor pada pembangunan ekonomi global menurut teks?', options: ['Kebun percobaan tanaman perkebunan', 'Momentum bagi ilmuwan bidang botani di Indonesia', 'Melahirkan banyak lembaga penelitian', 'Wadah belajar anak usia 1 tahun'], correct: [0, 1, 2], explanation: 'KRB berkontribusi melalui penelitian agroindustri dan pengembangan sains.' },
+            { id: 5, type: 'checkbox', section: 'Pemahaman Membaca', text: 'Apa yang menjadi ciri unik dari ikan Blue Parrotfish menurut teks?', options: ['Kemampuan untuk berganti kelamin', 'Moncong berupa rahang dengan gigi menyatu', 'Kemampuan menggiling bongkahan karang', 'Peran penting dalam pembentukan pantai berpasir'], correct: [0, 1, 2, 3], explanation: 'Ikan ini memiliki semua fitur unik tersebut.' },
+            { id: 6, type: 'radio', section: 'Pemahaman Membaca', text: 'Bagaimana Blue Parrotfish melindungi diri di malam hari?', options: ['Bergerak dalam kelompok besar', 'Mengeluarkan lendir penutup bau dan berasa pahit', 'Mengintensifkan warna tubuh', 'Mencari makan karang mati'], correct: 1, explanation: 'Cara melindungi diri di malam hari adalah dengan lendir.' },
+            { id: 7, type: 'radio', section: 'Pemahaman Membaca', text: 'Apa ide pokok pada teks Blue Parrotfish?', options: ['Blue Parrotfish hidup di terumbu karang.', 'Blue Parrotfish memiliki kemampuan unik berganti kelamin.', 'Gigi kuat Blue Parrotfish.', 'Ikan biru di Samudera Atlantik.'], correct: 1, explanation: 'Fokus utama teks adalah pada keunikan kemampuan ganti kelamin.' },
+            { id: 8, type: 'radio', section: 'Pemahaman Membaca', text: 'Apa kesimpulan yang dapat diambil dari teks Blue Parrotfish?', options: ['Unique because of changing sex', 'Hidup di terumbu karang', 'Pembentuk pantai berpasir', 'Spesies langka'], correct: 0, explanation: 'Kesimpulan ditekankan pada fokus teks: kemampuan ganti kelamin.' },
+            { id: 9, type: 'radio', section: 'Pemahaman Membaca', text: 'Pernyataan berikut yang sesuai dengan Teks 1 (Pantun) dan Teks 2 (Nasehat) adalah...', options: ['Teks 1 pantun, Teks 2 puisi naratif', 'Teks 1 puisi naratif, Teks 2 pantun', 'Keduanya puisi naratif', 'Keduanya pantun'], correct: 3, explanation: 'Kedua teks memiliki struktur 4 baris rima tertentu, keduanya pantun.' },
+            { id: 10, type: 'checkbox', section: 'Pemahaman Membaca', text: 'Tentukan informasi benar tentang pantun tersebut!', options: ['Sampiran di baris 1 & 2', 'Teks 1 pesan tentang belajar', 'Teks 1 tak punya hubungan sebab-akibat (Salah)', 'Teks 2 pesan menunda pekerjaan'], correct: [0, 1, 3], explanation: 'Struktur pantun baku memiliki sampiran di 2 baris awal.' },
+            { id: 11, type: 'checkbox', section: 'Pemahaman Membaca', text: 'Informasi sesuai tentang Presiden Soekarno?', options: ['PNI dibubarkan Juni 1930', 'Pernah dibuang ke Ende & Bengkulu', 'KAA di Bandung tahun 1956 (Salah)', 'G30S PKI lahirkan krisis politik'], correct: [0, 1, 3], explanation: 'KAA terjadi pada 1955, bukan 1956.' },
+            { id: 12, type: 'radio', section: 'Pemahaman Membaca', text: 'Mengapa Soekarno masuk penjara Sukamiskin tahun 1929?', options: ['Tindakan kriminal', 'Membela Belanda', 'Mendirikan PKI', 'Aktivitas politik Indonesia Merdeka'], correct: 3, explanation: 'Karena tujuan politik kemerdekaan melalui PNI.' },
+            { id: 13, type: 'checkbox', section: 'Pemahaman Membaca', text: 'Pernyataan benar tentang legenda Danau Maninjau?', options: ['Giran menangkis serangan Kukuban', 'Kukuban tolak pinangan karena saudara (Salah)', 'Giran & Sani melompat ke kawah', 'Letusan gunung ubah Bujang Sembilan jadi ikan'], correct: [0, 2, 3], explanation: 'Kukuban menolak karena dendam kekalahan silat, bukan karena saudara.' },
+            { id: 14, type: 'radio', section: 'Pemahaman Membaca', text: 'Apa yang terjadi setelah Giran dan Sani melompat ke kawah?', options: ['Gunung meletus & hancurkan segalanya', 'Melarikan diri', 'Jadi ikan seketika', 'Diberi ampunan'], correct: 0, explanation: 'Setelah melompat, gunung meletus keras.' },
+            { id: 15, type: 'radio', section: 'Pemahaman Membaca', text: 'Akibat dari letusan Gunung Tinjau adalah...', options: ['Bujang Sembilan menang silat', 'Kawah berubah jadi Danau Maninjau', 'Giran dipenjara', 'Kukuban nikahi Sani'], correct: 1, explanation: 'Legenda terbentuknya Danau Maninjau.' },
+
+            // ENGLISH READING (16-25)
+            { id: 16, type: 'radio', section: 'English Reading', text: 'Why did the writer paint her room pink?', options: ['Pink makes her comfortable', 'She likes scenery', 'Mother likes it', 'She likes pink (favorite)'], correct: 3, explanation: '"I painted it pink because it\'s my favorite color".' },
+            { id: 17, type: 'radio', section: 'English Reading', text: 'When does the writer use the encyclopedias?', options: ['In the morning', 'Spare time', 'When she studies', 'When she wakes up'], correct: 2, explanation: '"The dictionary and encyclopedias help me when I study".' },
+            { id: 18, type: 'radio', section: 'English Reading', text: 'What is the purpose of the text?', options: ['Ask to paint pink', 'How to decorate', 'Tell about hobby', 'To describe writer\'s room'], correct: 3, explanation: 'Descriptive text about her bedroom.' },
+            { id: 19, type: 'radio', section: 'English Reading', text: 'From the text we know that there are ... in the writer\'s room.', options: ['2 clocks', '3 windows', 'Some pictures', '2 pillows'], correct: 2, explanation: '"I put pictures of natural scenery on the wall".' },
+            { id: 20, type: 'radio', section: 'English Reading', text: 'It is monkey. What does he like to eat?', options: ['Vegetable', 'Meat', 'Fish', 'Fruit'], correct: 3, explanation: 'Monkeys generally eat fruit (bananas).' },
+            { id: 21, type: 'radio', section: 'English Reading', text: '"Good afternoon, students." This is an expression of...', options: ['Greeting', 'Leave-taking', 'Introduction', 'Prohibition'], correct: 0, explanation: 'Good afternoon is a greeting.' },
+            { id: 22, type: 'radio', section: 'English Reading', text: 'Long narrow pillow filled with cotton/fibre. What is it?', options: ['Pillow', 'Bolster', 'Blanket', 'Jug'], correct: 1, explanation: 'Definition of a bolster.' },
+            { id: 23, type: 'radio', section: 'English Reading', text: 'Pot for boiling water with lid, spout, handle. What is it?', options: ['Jug', 'Kettle', 'Sink', 'Grater'], correct: 1, explanation: 'Definition of a kettle.' },
+            { id: 24, type: 'radio', section: 'English Reading', text: 'She ... me a birthday cake today.', options: ['make', 'makes', 'made', 'had made'], correct: 1, explanation: 'Present tense with "today": makes.' },
+            { id: 25, type: 'radio', section: 'English Reading', text: 'How do you call your grandparents\' daughter?', options: ['Uncle', 'Aunt', 'Nephew', 'Niece'], correct: 1, explanation: 'Grandparents\' daughter is your Mother or Aunt.' },
+
+            // VERBAL INDO (26-35)
+            { id: 26, type: 'radio', section: 'Verbal Indonesia', text: 'BONANZA = ... (Sinonim)', options: ['Perayaan', 'Peternakan', 'Daerah subur', 'Sumber kesenangan'], correct: 3, explanation: 'Bonanza: sumber keuntungan/kesenangan.' },
+            { id: 27, type: 'radio', section: 'Verbal Indonesia', text: 'ZENIT = ... (Sinonim)', options: ['Langit', 'Bintang', 'Puncak', 'Jenis batu'], correct: 2, explanation: 'Zenit: titik puncak di atas pengamat.' },
+            { id: 28, type: 'radio', section: 'Verbal Indonesia', text: 'EKSKAVASI = ... (Sinonim)', options: ['Penggalian', 'Tangga elevator', 'Pertolongan', 'Pembangunan'], correct: 0, explanation: 'Ekskavasi: penggalian arkeologis.' },
+            { id: 29, type: 'radio', section: 'Verbal Indonesia', text: 'DISABILITAS (Antonim)', options: ['Tuli', 'Buta', 'Tuna', 'Normal'], correct: 3, explanation: 'Lawan kata keterbatasan diri (disabilitas) adalah normal.' },
+            { id: 30, type: 'radio', section: 'Verbal Indonesia', text: 'BARU (Antonim)', options: ['Lama', 'Anyar', 'Usang', 'Basi'], correct: 0, explanation: 'Lawan kata baru adalah lama.' },
+            { id: 31, type: 'radio', section: 'Verbal Indonesia', text: 'MUAI (Antonim)', options: ['Panas', 'Besar', 'Panjang', 'Susut'], correct: 3, explanation: 'Memuai (besar) vs Menyusut (kecil).' },
+            { id: 32, type: 'radio', section: 'Verbal Indonesia', text: 'PRESIDEN : NEGARA = ...', options: ['Rumah : Atap', 'Kepala : Rambut', 'Menteri : Instruksi', 'Ayah : Keluarga'], correct: 3, explanation: 'Kepala negara vs Kepala keluarga.' },
+            { id: 33, type: 'radio', section: 'Verbal Indonesia', text: 'KUPU-KUPU : KATAK = ...', options: ['Sapi : Kerbau', 'Ayam : Sapi', 'Kambing : Burung', 'Pesawat : Kapal'], correct: 0, explanation: 'Keduanya metamorfosis vs Keduanya mamalia melahirkan.' },
+            { id: 34, type: 'radio', section: 'Verbal Indonesia', text: 'OTONOMI : MANDIRI = ...', options: ['Cerdas : Banyak akal', 'Bensin : Mesin', 'Sabun : Mandi', 'Masyarakat : Rakyat'], correct: 0, explanation: 'Hubungan sinonim.' },
+            { id: 35, type: 'radio', section: 'Verbal Indonesia', text: 'HEWAN : ... = MAKANAN : LONTONG', options: ['Air', 'Sarapan', 'Kenyang', 'Sapi'], correct: 3, explanation: 'Lontong adalah jenis makanan, Sapi adalah jenis hewan.' },
+
+            // VERBAL ENGLISH (36-45)
+            { id: 36, type: 'radio', section: 'Verbal English', text: 'PRODUCE (Synonym)', options: ['Buy', 'Make', 'Sell', 'Find'], correct: 1, explanation: 'Produce = make/create.' },
+            { id: 37, type: 'radio', section: 'Verbal English', text: 'QUIT (Synonym)', options: ['Fire', 'Accept', 'Stop', 'Hire'], correct: 2, explanation: 'Quit = stop/cease.' },
+            { id: 38, type: 'radio', section: 'Verbal English', text: 'INCREASE (Synonym)', options: ['Subtract', 'Remove', 'Decrease', 'Grow'], correct: 3, explanation: 'Increase = grow.' },
+            { id: 39, type: 'radio', section: 'Verbal English', text: 'TRUST (Antonym)', options: ['Think', 'Doubt', 'Understand', 'Believe'], correct: 1, explanation: 'Trust vs Doubt.' },
+            { id: 40, type: 'radio', section: 'Verbal English', text: 'BUILD (Antonym)', options: ['Make', 'Destroy', 'Start', 'Create'], correct: 1, explanation: 'Build vs Destroy.' },
+            { id: 41, type: 'radio', section: 'Verbal English', text: 'LET (Antonym)', options: ['Clap', 'Deny', 'Laugh', 'Allow (Syn)'], correct: 1, explanation: 'Let/Allow vs Deny/Prevent.' },
+            { id: 42, type: 'radio', section: 'Verbal English', text: 'MOUNTAIN : HIGH = ...', options: ['River : Ugly', 'Valley : Low', 'Forest : Lonely', 'Desert : Wet'], correct: 1, explanation: 'Core characteristic.' },
+            { id: 43, type: 'radio', section: 'Verbal English', text: 'TEACHER : EDUCATE = ...', options: ['Senator : Represent', 'Lawyer : Instruct', 'Coach : Condemn', 'Priest : Annoy'], correct: 0, explanation: 'Function/Role.' },
+            { id: 44, type: 'radio', section: 'Verbal English', text: 'GOLD : EXPENSIVE = ...', options: ['Jewelry : Dull', 'Cotton : Beautiful', 'Silver : Outrageous', 'Velvet : Soft'], correct: 3, explanation: 'Material : Characteristic.' },
+            { id: 45, type: 'radio', section: 'Verbal English', text: 'MOTHER : FEMALE = ...', options: ['Vegetable : Green', 'Snake : Dangerous', 'Rock : Hard', 'Tree : Old'], correct: 2, explanation: 'Entity : Essential quality.' },
+
+            // NUMERASI (46-60)
+            { id: 46, type: 'radio', section: 'Numerasi', text: 'Jeni punya uang 149rb. Buku apa yang mungkin dibeli? (Pulang: 75rb, Pergi/Rindu: 79rb, Si Anak Kuat: 78rb, Berjuta Rasanya: 74rb)', options: ['Pulang & Si Anak Kuat', 'Berjuta Rasanya & Pulang', 'Rindu & Pergi', 'Pulang & Pergi'], correct: 1, explanation: '74rb + 75rb = 149rb.' },
+            { id: 47, type: 'checkbox', section: 'Numerasi', text: 'Setelah beli Berjuta Rasanya & Pulang, buku lain yang mungkin dibeli Jeni?', options: ['Si Anak Kuat & Rindu', 'Pulang & Rindu', 'Rindu & Pergi', 'Si Anak Kuat & Pergi'], correct: [2, 3], explanation: 'Kemungkinan membeli buku yang belum dimiliki.' },
+            { id: 48, type: 'checkbox', section: 'Numerasi', text: 'Nana ingin beli buku Pulang (75rb). Kombinasi uang yang pas?', options: ['50rb+20rb+5rb', '50rb+10rb+10rb+5rb', '50rb+20rb+2rb+2rb+1rb', '20rb*3 + 10rb + 5rb'], correct: [0, 1, 3], explanation: 'Total harus 75.000.' },
+            { id: 49, type: 'radio', section: 'Numerasi', text: 'Beli Si Anak Kuat, Rindu, Pergi. Diskon 20% tiap buku. Bayar pakai 200rb, kembalian?', options: ['11.200', '12.000', '13.200', '15.000'], correct: 0, explanation: 'Total (78+79+79)*0.8 = 188.800. 200rb - 188.800 = 11.200.' },
+            { id: 50, type: 'radio', section: 'Numerasi', text: '1 jeruk (120g) + 1 apel (150g) + 4 rambutan (4x25g) = ...', options: ['370 gram', '430 gram', '450 gram', '480 gram'], correct: 0, explanation: '120 + 150 + 100 = 370 gram.' },
+            { id: 51, type: 'checkbox', section: 'Numerasi', text: 'Angka puluhan pada nutrisi pepaya?', options: ['8 pada Kalium (182)', '2 pada Kalsium (20)', '6 pada Beta karoten (276)', '8 pada Vitamin A (18.7)'], correct: [0, 1], explanation: '182 (8 puluhan), 20 (2 puluhan).' },
+            { id: 52, type: 'checkbox', section: 'Numerasi', text: 'Tentukan Benar/Salah nutrisi pepaya!', options: ['Vitamin A > Beta Karoten (S)', 'Vitamin C 60-120mg (B)', 'Kalium & Kalsium sama (S)', 'Vitamin A 18.7-74.0mcg (B)'], correct: [1, 3], explanation: 'Cek tabel nutrisi.' },
+            { id: 53, type: 'radio', section: 'Numerasi', text: 'Beli keramik A (8.700/pc) untuk Bagian C (7 m2). 1 keramik A = 500 cm2. Biaya?', options: ['Rp 11.280', 'Rp 81.120', 'Rp 121.800', 'Rp 12.180'], correct: 3, explanation: '7m2 / 0.05m2 = 140 pcs. 140 * 8700 = 1.218.000 (Opsi PDF Rp 12.180 kemungkinan salah ketik titik).' },
+            { id: 54, type: 'checkbox', section: 'Numerasi', text: 'Jodohkan luas denah & keramik (asumsi pembulatan)', options: ['A (22m2) = 4.4 keramik C', 'B (13.5m2) = 1.5 keramik B', 'C (7m2) = 1.4 keramik A', 'A+B (35.5m2) = 7.1 keramik A'], correct: [0, 1, 2, 3], explanation: 'Semua sesuai dengan skala pembulatan luas keramik.' },
+            { id: 55, type: 'radio', section: 'Numerasi', text: 'Keliling rumah 35m. Pagar tiap 5cm. Jumlah bambu?', options: ['700 buah', '701 buah', '350 buah', '750 buah'], correct: 0, explanation: '3500cm / 5cm = 700.' },
+            { id: 56, type: 'radio', section: 'Numerasi', text: 'Keliling Bagian B = 12m. Pot tiap 50cm. Jumlah pot?', options: ['20', '24', '30', '40'], correct: 1, explanation: '1200 / 50 = 24.' },
+            { id: 57, type: 'radio', section: 'Numerasi', text: 'n = 4+7-9 = 2. m = 12:4 = 3. Nilai m+n?', options: ['5', '10', '15', '20'], correct: 0, explanation: '2 + 3 = 5.' },
+            { id: 58, type: 'radio', section: 'Numerasi', text: 'Banyaknya sisi & rusuk kubus?', options: ['8 & 12', '12 & 6', '6 & 4', '6 & 12'], correct: 3, explanation: '6 sisi, 12 rusuk.' },
+            { id: 59, type: 'radio', section: 'Numerasi', text: 'Naik 2400m. Tiap 80m turun 0.5 derajat. Berapa penurunan total?', options: ['-15 C', '-19 C', '-30 C', '-49 C'], correct: 0, explanation: '(2400/80) * 0.5 = 30 * 0.5 = 15.' },
+            { id: 60, type: 'radio', section: 'Numerasi', text: 'Urutan terkecil: 61%, 0.7, 0.68, 5/9?', options: ['Yuda, Budi, Ade, Dinda', 'Dinda, Yuda, Budi, Ade', 'Budi, Dinda, Ade, Yuda', 'Yuda, Ade, Dinda, Budi'], correct: 0, explanation: '5/9(55%), 61%, 0.68(68%), 0.7(70%).' },
+
+            // AKADEMIK (61-75)
+            { id: 61, type: 'radio', section: 'IPA/IPS', text: 'Perubahan fisika & kimia berturut-turut?', options: ['(1) & (5)', '(2) & (6)', '(3) & (7)', '(4) & (8)'], correct: 1, explanation: 'Lilin meleleh (Fisika), Besi berkarat (Kimia).' },
+            { id: 62, type: 'radio', section: 'IPA/IPS', text: 'Sifat cahaya (Pelangi, Air, Senter)?', options: ['Dibelokkan, Pantul, Serap', 'Cepat, Tembus, Energi', 'Diuraikan, Dibiaskan, Merambat Lurus', 'Lihat, Polarisasi, Interferensi'], correct: 2, explanation: 'Sesuai urutan gambar.' },
+            { id: 63, type: 'radio', section: 'IPA/IPS', text: 'Perubahan bentuk energi pada dinamo sepeda?', options: ['Gerak -> Listrik -> Cahaya', 'Magnet -> Gerak -> Cahaya', 'Kimia -> Magnet -> Cahaya', 'Listrik -> Kimia -> Cahaya'], correct: 0, explanation: 'Gerak roda ke listrik dinamo ke lampu.' },
+            { id: 64, type: 'radio', section: 'IPA/IPS', text: 'Batuan yang TIDAK sesuai fungsinya?', options: ['Apung: Kapur tulis', 'Obsidian: Perekat', 'Kuarsa: Kaca', 'Granit: Marmer'], correct: 1, explanation: 'Obsidian adalah batu permata/hias, bukan perekat.' },
+            { id: 65, type: 'radio', section: 'IPA/IPS', text: 'Adaptasi teratai di lingkungan air?', options: ['Daun lebar, tipis, banyak stomata', 'Daun kecil, tipis', 'Daun kecil, tebal', 'Akar lebat, kokoh'], correct: 0, explanation: 'Daun lebar untuk mempercepat penguapan.' },
+            { id: 66, type: 'radio', section: 'IPA/IPS', text: 'Usaha perbaiki fungsi hutan sebagai resapan air?', options: ['Penanaman berbagai jenis tumbuhan', 'Pemukiman', 'Kerajinan', 'Sumber kayu'], correct: 0, explanation: 'Reboisasi mengembalikan fungsi resapan.' },
+            { id: 67, type: 'radio', section: 'IPA/IPS', text: 'Yang BUKAN tujuan hibernasi?', options: ['Hemat energi', 'Hindari dingin', 'Menunggu musim kawin', 'Kurangi aktivitas'], correct: 2, explanation: 'Hibernasi untuk bertahan hidup dari dingin/kurang makan, bukan kawin.' },
+            { id: 68, type: 'checkbox', section: 'IPA/IPS', text: 'Penyakit peredaran darah?', options: ['Leukemia', 'Thalasemia', 'Hemophilia', 'Anoreksia'], correct: [0, 1, 2], explanation: 'Anoreksia adalah gangguan makan.' },
+            { id: 69, type: 'radio', section: 'IPA/IPS', text: 'Kecuali pelestarian hutan...', options: ['Hemat kertas', 'Buang sampah pada tempatnya', 'Reboisasi', 'Tebang pilih'], correct: 1, explanation: 'Buang sampah adalah kebersihan umum, bukan fokus pelestarian hutan spesifik.' },
+            { id: 70, type: 'radio', section: 'IPA/IPS', text: 'Contoh usaha bidang distribusi?', options: ['Asuransi', 'Tekstil', 'Toko buku & pasar swalayan', 'Pariwisata'], correct: 2, explanation: 'Distribusi menyalurkan barang ke konsumen.' },
+            { id: 71, type: 'radio', section: 'IPA/IPS', text: 'Kegiatan ekonomi produksi?', options: ['Pameran', 'Ekspor', 'Jual makanan', 'Buat olahan kayu bekas'], correct: 3, explanation: 'Menciptakan/mengolah barang baru.' },
+            { id: 72, type: 'radio', section: 'IPA/IPS', text: 'Modal dalam Perseroan Terbatas dibuktikan dengan...', options: ['Obligasi', 'Retribusi', 'Kuitansi', 'Saham'], correct: 3, explanation: 'Saham adalah bukti kepemilikan PT.' },
+            { id: 73, type: 'radio', section: 'IPA/IPS', text: 'Wilayah WITA?', options: ['Kaltim, Bali, Lombok', 'Kalbar, Sumatera', 'Sulawesi, Maluku', 'Kalsel, Irian Jaya'], correct: 0, explanation: 'Bali dan NTB masuk WITA.' },
+            { id: 74, type: 'radio', section: 'IPA/IPS', text: 'Batas landas kontinen dengan Indonesia?', options: ['Kamboja', 'Brunei', 'Philipina, Singapura, Malaysia', 'Australia, Papua'], correct: 2, explanation: 'Negara tetangga terdekat secara landas kontinen.' },
+            { id: 75, type: 'radio', section: 'IPA/IPS', text: 'Pemimpin perlawanan rakyat Makassar terhadap VOC?', options: ['Sultan Salahuddin', 'Sultan Hasanuddin', 'Sultan Khairun', 'Sultan Mughayat'], correct: 1, explanation: 'Ayam Jantan dari Timur.' },
+
+            // KARAKTER (76-85)
+            { id: 76, type: 'radio', section: 'Karakter', text: 'Sedang buat vas bunga kelompok, adzan Dhuhur berkumandang. Sikap?', options: ['Lanjut sampai selesai', 'Berhenti & shalat di masjid', 'Pulang masing-masing', 'Lanjut lalu shalat'], correct: 1, explanation: 'Prioritas ibadah tepat waktu.' },
+            { id: 77, type: 'radio', section: 'Karakter', text: 'Edo panggil Rani dengan nama orang tua. Sikap Edo?', options: ['Minta maaf & janji panggil nama Rani', 'Minta maaf & tak panggil lagi', 'Rani jangan maafkan', 'Saling minta maaf'], correct: 0, explanation: 'Tanggung jawab atas kesalahan.' },
+            { id: 78, type: 'radio', section: 'Karakter', text: 'Diskusi pagelaran karya. Ira punya lukisan tapi belum usul. Sikap?', options: ['Diam saja', 'Pura-pura usul waktu', 'Berbisik ke teman', 'Angkat tangan & sampaikan ide lukisan'], correct: 3, explanation: 'Aktif berkontribusi.' },
+            { id: 79, type: 'radio', section: 'Karakter', text: 'Diajak kerja sama saat ujian. Sikap Arga?', options: ['Tolak saran Lia', 'Ikuti saran untuk luar ujian', 'Tetap kerja sama', 'Ikuti saran untuk TIDAK kerja sama'], correct: 3, explanation: 'Kejujuran akademis.' },
+            { id: 80, type: 'checkbox', section: 'Karakter', text: 'Kelas kotor & kamu bukan petugas piket hari itu. Sikap?', options: ['Tunggu piket datang', 'Hubungi teman piket', 'Bersihkan sembari menunggu piket', 'Minta bantuan petugas'], correct: [1, 2], explanation: 'Inisiatif membantu.' },
+            { id: 81, type: 'checkbox', section: 'Karakter', text: 'Fajar tak masuk karena nonton konser. Sikap teman?', options: ['Jenguk & nasehati sekolah penting', 'Jenguk cari alasan', 'Jangan jenguk', 'Beri tahu guru alasan sebenarnya'], correct: [0, 1], explanation: 'Empati dan kepedulian.' },
+            { id: 82, type: 'radio', section: 'Karakter', text: 'Fandi suka rambut panjang tapi sekolah melarang. Sikap?', options: ['Segera potong rambut', 'Tunggu ditegur lagi', 'Pertahankan gaya', 'Buat alasan'], correct: 0, explanation: 'Ketaatan tata tertib.' },
+            { id: 83, type: 'checkbox', section: 'Karakter', text: 'Banjir di Kab X, jalan sulit. Sikap?', options: ['Tunda bantuan', 'Kirim lewat badan bantuan', 'Jadi relawan lokasi', 'Tunda datang & galang dana'], correct: [1, 2], explanation: 'Kepedulian sosial.' },
+            { id: 84, type: 'checkbox', section: 'Karakter', text: 'Tugas internet, Ken ajak game online. Sikap Rino?', options: ['Ikuti ajakan', 'Main sebentar', 'Tolak & selesaikan tugas', 'Prioritas tugas baru main atas izin'], correct: [2, 3], explanation: 'Disiplin & patuh orang tua.' },
+            { id: 85, type: 'checkbox', section: 'Karakter', text: 'Hal positif dari murid SDN Sidomulyo?', options: ['Budaya antre', 'Semangat belajar', 'Bungkus berserakan (Salah)', 'Buang sampah ke tempatnya'], correct: [0, 1, 3], explanation: 'Kebiasaan disiplin dan bersih.' }
+        ];
+
+        let currentIndex = 0;
+        let userAnswers = {};
+        let timeLeft = 120 * 60;
+        let timerId;
+        let reviewMode = false;
+
+        function startQuiz() {
+            document.getElementById('welcomeScreen').classList.add('hidden');
+            document.getElementById('quizContent').classList.remove('hidden');
+            renderNavGrid();
+            showQuestion(0);
+            startTimer();
+        }
+
+        function renderNavGrid() {
+            const grid = document.getElementById('navGrid');
+            grid.innerHTML = '';
+            questions.forEach((q, i) => {
+                const btn = document.createElement('button');
+                btn.id = `nav-btn-${i}`;
+                btn.className = 'question-nav-btn border border-slate-300 text-slate-400 bg-white hover:border-blue-500';
+                btn.innerText = i + 1;
+                btn.onclick = () => showQuestion(i);
+                grid.appendChild(btn);
+            });
+            updateNavUI();
+        }
+
+        function updateNavUI() {
+            questions.forEach((q, i) => {
+                const btn = document.getElementById(`nav-btn-${i}`);
+                if (!btn) return;
+                const answered = userAnswers[q.id] !== undefined && (Array.isArray(userAnswers[q.id]) ? userAnswers[q.id].length > 0 : true);
+                
+                btn.classList.remove('bg-blue-600', 'text-white', 'bg-blue-100', 'border-blue-400', 'ring-2', 'ring-blue-400', 'z-10');
+                
+                if (i === currentIndex) {
+                    btn.classList.add('ring-2', 'ring-blue-400', 'z-10');
+                }
+
+                if (answered) {
+                    btn.classList.add('bg-blue-50', 'text-blue-600', 'border-blue-400');
+                }
+            });
+        }
+
+        function showQuestion(index) {
+            currentIndex = index;
+            const q = questions[index];
+            const container = document.getElementById('questionContainer');
+            
+            let optionsHtml = '';
+            q.options.forEach((opt, oi) => {
+                const inputType = q.type === 'checkbox' ? 'checkbox' : 'radio';
+                const userAns = userAnswers[q.id];
+                const isChecked = q.type === 'checkbox' 
+                    ? (userAns || []).includes(oi)
+                    : userAns === oi;
+                
+                let borderColorClass = 'border-slate-100';
+                let bgColorClass = '';
+                
+                if (reviewMode) {
+                    const isCorrect = q.type === 'checkbox' ? q.correct.includes(oi) : q.correct === oi;
+                    if (isCorrect) borderColorClass = 'correct-border';
+                    else if (isChecked) borderColorClass = 'wrong-border';
+                } else if (isChecked) {
+                    borderColorClass = 'selected-option';
+                }
+
+                optionsHtml += `
+                    <label class="option-label flex items-start gap-4 p-4 rounded-xl border-2 mb-3 cursor-pointer ${borderColorClass} ${reviewMode ? 'pointer-events-none' : ''}">
+                        <input type="${inputType}" name="q${q.id}" value="${oi}" 
+                               ${isChecked ? 'checked' : ''} 
+                               onchange="saveAnswer(${q.id}, ${oi}, '${q.type}')"
+                               class="mt-1 w-5 h-5 text-blue-600">
+                        <span class="text-slate-700 leading-tight">${opt}</span>
+                    </label>
+                `;
+            });
+
+            container.innerHTML = `
+                <div class="mb-4">
+                    <span class="text-[10px] font-black uppercase tracking-widest text-blue-500 bg-blue-50 px-2 py-0.5 rounded">${q.section}</span>
+                    <h2 class="text-xl font-bold mt-2">Soal Ke-${q.id}</h2>
+                </div>
+                <p class="text-lg text-slate-800 mb-6 leading-relaxed">${q.text}</p>
+                <div class="space-y-1">${optionsHtml}</div>
+                
+                <div id="review-box" class="${reviewMode ? 'block' : 'hidden'} mt-8 p-5 bg-amber-50 rounded-2xl border border-amber-200">
+                    <h4 class="font-bold text-amber-800 mb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                        Kunci & Pembahasan:
+                    </h4>
+                    <p class="text-sm text-amber-900 leading-relaxed">${q.explanation}</p>
+                </div>
+            `;
+
+            document.getElementById('questionCounter').innerText = `Soal ${index + 1} dari ${questions.length}`;
+            document.getElementById('progressBar').style.width = `${((index + 1) / questions.length) * 100}%`;
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').innerText = index === questions.length - 1 ? 'Selesai' : 'Lanjut';
+            
+            updateNavUI();
+        }
+
+        function saveAnswer(qId, val, type) {
+            if (reviewMode) return;
+            if (type === 'checkbox') {
+                if (!userAnswers[qId]) userAnswers[qId] = [];
+                const idx = userAnswers[qId].indexOf(val);
+                if (idx > -1) userAnswers[qId].splice(idx, 1);
+                else userAnswers[qId].push(val);
+            } else {
+                userAnswers[qId] = val;
+            }
+            showQuestion(currentIndex);
+        }
+
+        function changeQuestion(step) {
+            const nextIdx = currentIndex + step;
+            if (nextIdx >= 0 && nextIdx < questions.length) {
+                showQuestion(nextIdx);
+            } else if (nextIdx === questions.length) {
+                confirmFinish();
+            }
+        }
+
+        function startTimer() {
+            timerId = setInterval(() => {
+                timeLeft--;
+                if (timeLeft <= 0) {
+                    finishQuiz();
+                    return;
+                }
+                let mins = Math.floor(timeLeft / 60);
+                let secs = timeLeft % 60;
+                document.getElementById('timer').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }, 1000);
+        }
+
+        function confirmFinish() {
+            document.getElementById('confirmModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('confirmModal').classList.add('hidden');
+        }
+
+        function finishQuiz() {
+            closeModal();
+            clearInterval(timerId);
+            let score = 0;
+
+            questions.forEach(q => {
+                const userAns = userAnswers[q.id];
+                let correct = false;
+                if (q.type === 'checkbox') {
+                    const sortedUser = (userAns || []).sort();
+                    const sortedCorrect = [...q.correct].sort();
+                    correct = JSON.stringify(sortedUser) === JSON.stringify(sortedCorrect);
+                } else {
+                    correct = userAns === q.correct;
+                }
+                if (correct) score++;
+            });
+
+            document.getElementById('quizContent').classList.add('hidden');
+            document.getElementById('resultScreen').classList.remove('hidden');
+            document.getElementById('scoreDisplay').innerText = `${score} / ${questions.length}`;
+            
+            if (score >= 75) document.getElementById('feedbackText').innerText = "Luar Biasa! Anda siap menghadapi PSB Labschool Paket 3.";
+            else if (score >= 50) document.getElementById('feedbackText').innerText = "Kerja Bagus! Pelajari materi yang masih salah melalui pembahasan.";
+            else document.getElementById('feedbackText').innerText = "Tetap semangat! Gunakan pembahasan untuk memperbaiki pemahaman Anda.";
+        }
+
+        function showReviewMode() {
+            reviewMode = true;
+            document.getElementById('resultScreen').classList.add('hidden');
+            document.getElementById('quizContent').classList.remove('hidden');
+            showQuestion(0);
+        }
+    </script>
+</body>
+</html>
