@@ -1,0 +1,14 @@
+# Dependencies (Folder ini sangat besar, jangan di-upload)
+node_modules/
+
+# Hasil build (Kita sudah pakai gh-pages, jadi tidak perlu di branch main)
+build/
+dist/
+
+# File konfigurasi pribadi/rahasia
+.env
+.env.local
+
+# File sampah sistem operasi
+.DS_Store
+Thumbs.db

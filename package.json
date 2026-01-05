@@ -4,11 +4,17 @@
   "homepage": "https://dwahjoedi.github.io/33-TryoutJuara/",
   "private": true,
   "dependencies": {
+    "autoprefixer": "^10.4.23",
+    "lucide-react": "^0.562.0",
+    "postcss": "^8.5.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1"
+    "react-router-dom": "^7.11.0",
+    "react-scripts": "5.0.1",
+    "tailwindcss": "^3.4.19"
   },
   "scripts": {
+    "init-tailwind": "tailwindcss init -p",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -18,5 +24,17 @@
   },
   "devDependencies": {
     "gh-pages": "^6.3.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
