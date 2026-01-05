@@ -6,7 +6,7 @@ const quizData = [
   // --- BAHASA INDONESIA (1-10) ---
   {
     question: "Berdasarkan teks tentang Kebun Raya Bogor, apa yang menjadi identitas bangsa dan memberikan kontribusi pada pembangunan ekonomi global?",
-    image: "/images/p3_soal_1.jpg", // Path ke file gambar Anda
+    image: "/images/p3_soal_01.jpg", // Path ke file gambar Anda
     options: ["Variasi jenis tanamannya saja", "Sejarah Kebun Raya Bogor", "Pusat penelitian biologi tropis", "Penemuan ilmiah bidang botani"],
     answer: 1,
     rationale: "Berdasarkan paragraf kedua, sejarah Kebun Raya Bogor menjadi identitas bangsa serta memberikan kontribusi pembangunan ekonomi global."
@@ -540,7 +540,18 @@ export default function App() {
                     <span className="bg-slate-100 text-slate-500 px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest">Soal #{idx + 1}</span>
                     {isSkipped ? <span className="text-[10px] font-bold text-orange-500 bg-orange-50 px-2 py-1 rounded-lg">Tidak Diisi</span> : <span className="text-[10px] font-bold text-red-500 bg-red-50 px-2 py-1 rounded-lg">Salah</span>}
                   </div>
-                  <p className="text-lg font-bold text-slate-800 mb-6 leading-relaxed">{q.question}</p>
+                  <p className="text-lg font-bold text-slate-800 mb-4 leading-relaxed">{q.question}</p>
+
+{/* Gambar di halaman review */}
+{q.image && (
+  <div className="mb-4 rounded-xl overflow-hidden border border-slate-100 bg-white flex justify-center p-2">
+    <img 
+      src={q.image} 
+      alt="Visualisasi soal" 
+      className="max-w-full h-auto max-h-[200px] object-contain" 
+    />
+  </div>
+)}
                   <div className="grid grid-cols-1 gap-3 mb-6">
                     {q.options.map((opt, i) => {
                       const isCorrect = q.answer === i;
