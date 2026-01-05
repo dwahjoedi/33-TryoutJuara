@@ -1,10 +1,13 @@
 {
   "files": {
+    "main.css": "/33-TryoutJuara/static/css/main.f324cf20.css",
     "main.js": "/33-TryoutJuara/static/js/main.2dd72907.js",
     "index.html": "/33-TryoutJuara/index.html",
+    "main.f324cf20.css.map": "/33-TryoutJuara/static/css/main.f324cf20.css.map",
     "main.2dd72907.js.map": "/33-TryoutJuara/static/js/main.2dd72907.js.map"
   },
   "entrypoints": [
+    "static/css/main.f324cf20.css",
     "static/js/main.2dd72907.js"
   ]
 }
