@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/33-TryoutJuara/static/css/main.e7e40476.css",
-    "main.js": "/33-TryoutJuara/static/js/main.a7397303.js",
+    "main.css": "/33-TryoutJuara/static/css/main.da49d911.css",
+    "main.js": "/33-TryoutJuara/static/js/main.f8c909df.js",
     "index.html": "/33-TryoutJuara/index.html",
-    "main.e7e40476.css.map": "/33-TryoutJuara/static/css/main.e7e40476.css.map",
-    "main.a7397303.js.map": "/33-TryoutJuara/static/js/main.a7397303.js.map"
+    "main.da49d911.css.map": "/33-TryoutJuara/static/css/main.da49d911.css.map",
+    "main.f8c909df.js.map": "/33-TryoutJuara/static/js/main.f8c909df.js.map"
   },
   "entrypoints": [
-    "static/css/main.e7e40476.css",
-    "static/js/main.a7397303.js"
+    "static/css/main.da49d911.css",
+    "static/js/main.f8c909df.js"
   ]
 }
