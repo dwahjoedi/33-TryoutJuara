@@ -469,10 +469,13 @@ rationale: "Langkah pertama adalah menghitung luas bagian C yaitu $2\text{ m} \t
 
   },
   { question: "Adaptasi tumbuhan di atas terhadap lingkungan air adalah ....", 
-    image: "images/p3_soal_65.jpg", options: [ "berdaun lebar, tipis, dan banyak stomata", "berdaun kecil, tipis, dan banyak stomata", "berdaun kecil, tebal, dan sedikit stomata", "berdaun lebar, akar lebat, dan kokoh" ], answer: 0, rationale: "Tumbuhan pada gambar adalah teratai, yang merupakan tumbuhan hidrofit (hidup di air). Adaptasi utama teratai terhadap lingkungan air meliputi daun yang lebar dan tipis untuk memudahkan penguapan air dan meningkatkan daya apung, serta memiliki banyak stomata di permukaan atas daunnya untuk memperlancar proses transpirasi di lingkungan lembap." 
-
+    image: "images/p3_soal_65.jpg", 
+    options: [ "berdaun lebar, tipis, dan banyak stomata", "berdaun kecil, tipis, dan banyak stomata", "berdaun kecil, tebal, dan sedikit stomata", "berdaun lebar, akar lebat, dan kokoh" ], answer: 0, rationale: "Tumbuhan pada gambar adalah teratai, yang merupakan tumbuhan hidrofit (hidup di air). Adaptasi utama teratai terhadap lingkungan air meliputi daun yang lebar dan tipis untuk memudahkan penguapan air dan meningkatkan daya apung, serta memiliki banyak stomata di permukaan atas daunnya untuk memperlancar proses transpirasi di lingkungan lembap." 
   },
-  { question: "Usaha yang paling tepat untuk memperbaiki fungsi hutan sebagai daerah resapan air yang telah rusak berdasarkan ilustrasi tersebut adalah ....", image: "images/p30_soal_66.jpg", options: [ "Penanaman berbagai jenis tumbuhan di hutan tersebut", "Menjadikan hutan sebagai daerah pemukiman warga", "Pemanfaatan tanaman kecil untuk bahan kerajinan", "Memanfaatkan hutan sebagai sumber kayu untuk industri kertas" ], answer: 0, rationale: "Ilustrasi menjelaskan hilangnya fungsi hutan sebagai daerah resapan air akibat pemanfaatan yang salah. Upaya perbaikan yang paling efektif adalah reboisasi atau penanaman kembali berbagai jenis tumbuhan (pilihan A) agar akar-akar pohon dapat kembali menyerap dan menahan air di dalam tanah." },
+  { 
+    question: "Usaha yang paling tepat untuk memperbaiki fungsi hutan sebagai daerah resapan air yang telah rusak berdasarkan ilustrasi tersebut adalah ....", 
+    image: "images/p3_soal_66.jpg", 
+    options: [ "Penanaman berbagai jenis tumbuhan di hutan tersebut", "Menjadikan hutan sebagai daerah pemukiman warga", "Pemanfaatan tanaman kecil untuk bahan kerajinan", "Memanfaatkan hutan sebagai sumber kayu untuk industri kertas" ], answer: 0, rationale: "Ilustrasi menjelaskan hilangnya fungsi hutan sebagai daerah resapan air akibat pemanfaatan yang salah. Upaya perbaikan yang paling efektif adalah reboisasi atau penanaman kembali berbagai jenis tumbuhan (pilihan A) agar akar-akar pohon dapat kembali menyerap dan menahan air di dalam tanah." },
 
 { question: "Pernyataan berikut ini yang menunjukkan bukan merupakan tujuan dari perilaku hibernasi pada hewan adalah ....", 
   //image: "images/p3_soal_67.jpg", 
@@ -517,7 +520,8 @@ rationale: "Langkah pertama adalah menghitung luas bagian C yaitu $2\text{ m} \t
 
 { question: "Negara tetangga yang mempunyai batas landas kontinen dengan Indonesia adalah ....", 
   //image: "images/p3_soal_74.jpg", 
-  options: [ "Kamboja, Australia, dan Philipina", "Brunei Darussalam, Malaysia, dan Singapura", "Philipina, Singapura, dan Malaysia", "Brunei Darussalam, Australia, dan Papua Nugini" ], 
+  options: [ "Kamboja, Australia, dan Philipina", "Brunei Darussalam, Malaysia, dan Singapura", 
+    "Philipina, Singapura, dan Malaysia", "Thailand, Australia, dan Papua Nugini" ], 
   answer: 3, 
   rationale: "Indonesia memiliki perjanjian batas landas kontinen dengan India, Thailand, Malaysia, Vietnam, Papua Nugini, dan Australia. Berdasarkan pilihan yang tersedia, opsi D adalah yang paling mendekati karena mencantumkan Australia dan Papua Nugini sebagai negara yang berbatasan landas kontinen secara resmi dengan Indonesia." 
 },
@@ -582,7 +586,7 @@ rationale: "Langkah pertama adalah menghitung luas bagian C yaitu $2\text{ m} \t
     question: "Fajar tidak masuk sekolah karena terlambat bangun akibat menonton konser musik. Sebagai teman sekolahnya, tindakan yang tepat dilakukan adalah ....",
     image: "images/p3_soal_81.jpg",
     options: [
-      "1, 2, dan 3", //Menjenguk dan menasihatinya bahwa pendidikan lebih penting",
+      "1 dan 2", //Menjenguk dan menasihatinya bahwa pendidikan lebih penting",
       "1, 2, dan 4", //Menjenguknya untuk mengetahui alasan tidak masuk sekolah",
       "1 dan 4", //Tidak menjenguknya karena sudah mengetahui bahwa dia anak tidak disiplin",
       "4"//Memberi tahu guru apabila sudah mengetahui alasan dia tidak masuk sekolah"
@@ -610,7 +614,7 @@ rationale: "Langkah pertama adalah menghitung luas bagian C yaitu $2\text{ m} \t
       "2 dan 4", //Menjadi relawan dengan menyalurkan bantuan ke lokasi",
       "1 dan 3"//Mengikuti penggalangan dana dan menunda datang ke lokasi"
     ],
-    answer: 3,
+    answer: 2,
     rationale: "Ketika akses fisik sulit, menyalurkan bantuan melalui lembaga resmi atau berfokus pada penggalangan dana adalah cara yang paling efektif dan aman agar bantuan tetap sampai kepada yang membutuhkan (pilihan '1 dan 3')."
   },
   {
