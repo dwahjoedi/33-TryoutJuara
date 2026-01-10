@@ -24,6 +24,7 @@ const quizData = [
   {
     //No. 3
     question: "Apa fungsi awal Kebun Raya Bogor menurut catatan sejarah dari laman kebunraya?",
+    image: "images/p3_soal_01.jpg", // Path ke file gambar Anda
     options: ["Pusat penelitian biologi tropis kelas dunia", "Kebun percobaan tanaman perkebunan", "Tempat rekreasi keluarga kerajaan Belanda", "Warisan nilai-nilai universal UNESCO"],
     answer: 1,
     rationale: "Teks menyebutkan bahwa pada mulanya kebun ini hanya digunakan sebagai kebun percobaan bagi tanaman perkebunan yang akan diperkenalkan di Hindia Belanda."
@@ -31,6 +32,7 @@ const quizData = [
   {
     //No.4 
     question: "Pernyataan yang TIDAK sesuai dengan teks Kebun Raya Bogor adalah ....",
+    image: "images/p3_soal_01.jpg", // Path ke file gambar Anda
     options: ["Kebun Raya Bogor memiliki luas mencapai 87 hektar.", "Terdapat 15.000 jenis koleksi pohon dan tumbuhan.", "Kebun Raya Bogor hanya melestarikan jenis tanaman eksotis saja.", "Inovasi botani berkontribusi pada peningkatan kekayaan agroindustri Belanda."],
     answer: 2,
     rationale: "Pernyataan C salah karena teks menyebutkan kekayaan warisan mencakup variasi jenis tanaman, bentang lahan, bangunan, artefak, dan ilmu botani secara umum, tidak hanya tanaman eksotis."
@@ -198,7 +200,7 @@ const quizData = [
   },
 { 
   //No.21
-  question: "Mrs. Rossy : Good afternoon, students. Students : Good afternoon, Ma'am. The underlined utterance is an expression of ...", 
+  question: "Mrs. Rossy : <u>Good afternoon</u>, students. Students : <u>Good afternoon</u>, Ma'am. The underlined utterance is an expression of ...", 
   //image: "images/p3_soal_21.jpg", 
   options: [ "Greeting", "Leave-taking", "Introduction", "Prohibition" ], 
   answer: 0, rationale: "Ungkapan 'Good afternoon' merupakan bentuk salam atau sapaan (greeting) yang digunakan pada waktu siang atau sore hari." 
@@ -620,7 +622,7 @@ rationale: "Langkah pertama adalah menghitung luas bagian C yaitu $2\text{ m} \t
       "1 dan 4", //Menolak bermain game dan menyelesaikan tugasnya agar cepat selesai",
       "2 dan 4" //Memprioritaskan mengerjakan tugas setelah itu dapat bermain atas izin ibunya"
     ],
-    answer: 2,
+    answer: 1,
     rationale: "Sikap tanggung jawab terhadap tugas dan kepatuhan terhadap perintah orang tua harus diutamakan. Menolak bermain game dan menyelesaikan tugas adalah tindakan yang paling tepat (pilihan '1 dan 4')."
   },
   {
