@@ -7,6 +7,7 @@ import { CheckCircle, XCircle, ChevronLeft, ChevronRight, RotateCcw, Award, Book
 const quizData = [
   // --- BAHASA INDONESIA (1-10) ---
   {
+    //No.1
     question: "Berdasarkan teks tentang Kebun Raya Bogor, apa yang menjadi identitas bangsa dan memberikan kontribusi pada pembangunan ekonomi global?",
     image: "images/p3_soal_01.jpg", // Path ke file gambar Anda
     options: ["Variasi jenis tanamannya saja", "Sejarah Kebun Raya Bogor", "Pusat penelitian biologi tropis", "Penemuan ilmiah bidang botani"],
@@ -14,24 +15,28 @@ const quizData = [
     rationale: "Berdasarkan paragraf kedua, sejarah Kebun Raya Bogor menjadi identitas bangsa serta memberikan kontribusi pembangunan ekonomi global."
   },
   {
+    //No. 2
     question: "Ide pokok paragraf ketiga pada teks tersebut adalah ....",
     options: ["Penelitian tanaman domestik berbagai tanaman ekspor", "Kontribusi penemuan ilmiah Kebun Raya Bogor bagi kesejahteraan manusia", "Inovasi dalam bidang ekonomi pemerintah Belanda", "Agroindustri spesies eksotis kopi dan teh"],
     answer: 1,
     rationale: "Paragraf ketiga menjelaskan bahwa penemuan ilmiah di Kebun Raya Bogor memberikan kontribusi nyata bagi kesejahteraan umat manusia."
   },
   {
+    //No. 3
     question: "Apa fungsi awal Kebun Raya Bogor menurut catatan sejarah dari laman kebunraya?",
     options: ["Pusat penelitian biologi tropis kelas dunia", "Kebun percobaan tanaman perkebunan", "Tempat rekreasi keluarga kerajaan Belanda", "Warisan nilai-nilai universal UNESCO"],
     answer: 1,
     rationale: "Teks menyebutkan bahwa pada mulanya kebun ini hanya digunakan sebagai kebun percobaan bagi tanaman perkebunan yang akan diperkenalkan di Hindia Belanda."
   },
   {
+    //No.4 
     question: "Pernyataan yang TIDAK sesuai dengan teks Kebun Raya Bogor adalah ....",
     options: ["Kebun Raya Bogor memiliki luas mencapai 87 hektar.", "Terdapat 15.000 jenis koleksi pohon dan tumbuhan.", "Kebun Raya Bogor hanya melestarikan jenis tanaman eksotis saja.", "Inovasi botani berkontribusi pada peningkatan kekayaan agroindustri Belanda."],
     answer: 2,
     rationale: "Pernyataan C salah karena teks menyebutkan kekayaan warisan mencakup variasi jenis tanaman, bentang lahan, bangunan, artefak, dan ilmu botani secara umum, tidak hanya tanaman eksotis."
   },
  {
+    //No.5
     question: "Apa yang menjadi ciri fisik paling unik dari ikan Blue Parrotfish yang membuatnya disebut mirip burung?",
     image: "images/p3_soal_05.jpg", // Path ke file gambar Anda
     options: [
@@ -43,22 +48,30 @@ const quizData = [
     answer: 1,
     rationale: "Ciri paling khas dari Blue Parrotfish adalah susunan giginya yang menyatu pada rahang, membentuk struktur kuat menyerupai paruh burung kakaktua (parrot) yang digunakan untuk mengikis alga dari karang."
   },
-  { question: "Bagaimana cara ikan Blue Parrotfish melindungi diri dari predator pada malam hari?", 
+  { 
+    //No. 6
+    question: "Bagaimana cara ikan Blue Parrotfish melindungi diri dari predator pada malam hari?", 
     options: [ "Bersembunyi di wilayah Samudera Atlantik Barat", "Mengeluarkan lendir yang menutupi bau dan memiliki rasa pahit", "Mencari makan di karang mati yang dilapisi alga", "Bergerak dalam kelompok besar yang dipimpin oleh jantan" ], 
     answer: 1, 
     rationale: "Berdasarkan data pada tabel, Blue Parrotfish memiliki mekanisme perlindungan diri yang unik di malam hari dengan cara mengeluarkan lendir. Lendir ini berfungsi untuk menyamarkan bau mereka dari penciuman predator serta memberikan rasa pahit jika dimakan." 
   },
-  { question: "Apa ide pokok yang disampaikan pada teks tersebut?", 
+  { 
+    //No.7
+    question: "Apa ide pokok yang disampaikan pada teks tersebut?", 
     options: [ "Blue Parrotfish adalah ikan yang hidup di terumbu karang", "Blue Parrotfish memiliki kemampuan unik berganti jenis kelamin", "Blue Parrotfish memiliki gigi kuat untuk menghancurkan karang", "Blue Parrotfish merupakan ikan biru dari Samudera Atlantik" ], 
     answer: 0, 
     rationale: "Ide pokok adalah gagasan utama yang menggambarkan subjek secara umum. Pilihan A merupakan pernyataan paling umum yang mencakup identitas dan habitat Blue Parrotfish." 
   },
-  { question: "Apa kesimpulan yang dapat diambil dari teks tentang Blue Parrotfish?", 
+  { 
+    //No.8
+    question: "Apa kesimpulan yang dapat diambil dari teks tentang Blue Parrotfish?", 
     options: [ "Blue Parrotfish unik karena kemampuan mengganti jenis kelamin", "Blue Parrotfish hidup di terumbu karang dengan moncong rahang unik", "Blue Parrotfish merupakan hewan yang berperan penting dalam pembentukan pantai berpasir", "Blue Parrotfish merupakan spesies ikan yang langka" ], 
     answer: 2, 
     rationale: "Kesimpulan menekankan pada dampak atau peran penting subjek. Peran mereka dalam pembentukan pantai berpasir adalah poin ekologis utama dari eksistensi mereka." 
   },
-  { question: "Pernyataan manakah yang paling sesuai mengenai jenis Teks 1 dan Teks 2?", 
+  { 
+    //No.9
+    question: "Pernyataan manakah yang paling sesuai mengenai jenis Teks 1 dan Teks 2?", 
     image: "images/p3_soal_09.jpg", // Path ke file gambar Anda
     options: [
       "Teks 1 adalah sebuah pantun, sementara Teks 2 adalah sebuah puisi naratif.", 
@@ -68,12 +81,16 @@ const quizData = [
       answer: 3 ,
       rationale: "Kedua teks merupakan pantun karena memiliki pola struktur yang sama, yaitu terdiri dari empat baris dengan rima tertentu (seperti rima a-b-a-b pada teks 1 dan teks 2) dalam setiap baitnya." 
   },
-  { question: "Di mana letak sampiran pada Teks 1 dan Teks 2 berdasarkan struktur pantun?", 
+  { 
+    //No.10
+    question: "Di mana letak sampiran pada Teks 1 dan Teks 2 berdasarkan struktur pantun?", 
     options: ["Baris 1 dan 2", "Baris 2 dan 3", "Baris 3 dan 4", "Baris 1 dan 4"],
     answer: 0, 
     rationale: "Berdasarkan informasi pada poin pertama di tabel, struktur pantun yang benar memiliki sampiran pada baris 1 dan 2." 
   },
-  { question: "Kapan PNI dibubarkan oleh Belanda setelah pembelaan Sukarno dalam Indonesia Menggugat?", 
+  { 
+    //No.11
+    question: "Kapan PNI dibubarkan oleh Belanda setelah pembelaan Sukarno dalam Indonesia Menggugat?", 
     image: "images/p3_soal_11.jpg", // Path ke file gambar Anda
     options: [
       "Januari 1930", 
@@ -82,7 +99,9 @@ const quizData = [
       answer: 1, 
       rationale: "Poin pertama pada tabel menyatakan bahwa PNI dibubarkan oleh Belanda pada Juni 1930 setelah pembelaan Sukarno dalam Indonesia Menggugat."
    },
-   { question: "Mengapa Sukarno masuk penjara di Sukamiskin, Bandung, pada 29 Desember 1929?", 
+   { 
+    //No. 12
+    question: "Mengapa Sukarno masuk penjara di Sukamiskin, Bandung, pada 29 Desember 1929?", 
     options: [
       "Karena ia melakukan tindakan kriminal murni", 
       "Karena ia membela kebijakan pemerintah Belanda", 
@@ -91,7 +110,9 @@ const quizData = [
       answer: 3, 
       rationale: "Sukarno dipenjarakan oleh pemerintah kolonial Belanda karena perjuangan politiknya melalui PNI yang dianggap membahayakan kekuasaan Belanda."        
   },
- { question: "Peristiwa apa yang mengubah Bujang Sembilan menjadi ikan menurut legenda tersebut?", 
+ { 
+  //No. 13
+  question: "Peristiwa apa yang mengubah Bujang Sembilan menjadi ikan menurut legenda tersebut?", 
   image: "images/p3_soal_13.jpg", // Path ke file gambar Anda
   options: [
     "Kutukan dari Datuk Limbatang", 
@@ -102,6 +123,7 @@ const quizData = [
     rationale: "Berdasarkan informasi poin nomor 4 pada tabel pernyataan, letusan Gunung Tinian adalah peristiwa yang mengubah Bujang Sembilan menjadi ikan." 
   },
   { 
+    //No. 14
     question: "Hal yang terjadi setelah Giran dan Sani melompat ke dalam kawah gunung adalah...", 
     options: [
       "Gunung tersebut meletus dan menghancurkan segalanya.", 
@@ -111,7 +133,9 @@ const quizData = [
     answer: 0, 
     rationale: "Berdasarkan alur legenda tersebut, tindakan Giran dan Sani melompat ke kawah memicu letusan Gunung Tinian yang dahsyat. Peristiwa letusan inilah yang kemudian mengubah Bujang Sembilan menjadi ikan sesuai dengan informasi pada poin pernyataan di soal sebelumnya. "
   },
- { question: "Akibat dari letusan Gunung Tinjau menurut legenda tersebut adalah...", 
+ { 
+  //No.15
+  question: "Akibat dari letusan Gunung Tinjau menurut legenda tersebut adalah...", 
   options: [
     "Bujang Sembilan menjadi pemenang dalam adu silat.", 
     "Kawah gunung berubah menjadi danau yang diberi nama Danau Maninjau.", 
@@ -121,403 +145,493 @@ const quizData = [
     rationale: "Berdasarkan alur cerita legenda, letusan dahsyat Gunung Tinjau mengakibatkan kawah gunung tersebut berubah menjadi danau besar yang kemudian dikenal dengan nama Danau Maninjau. "
  },
   // --- BAHASA INGGRIS (11-20) ---
-  {
-    question: "Read the following notice: 'NO SWIMMING IN THIS AREA'. Where would you likely find this notice?",
-    options: ["In a library", "Near a river or beach", "At a parking lot", "Inside a classroom"],
-    answer: 1,
-    rationale: "Warning notices about swimming are placed near bodies of water like rivers or beaches for public safety."
+  { 
+    //No. 16
+    question: "Why did the writer paint her room pink?", 
+    image: "images/p3_soal_16.jpg", // Path ke file gambar Anda
+    options: [
+      "Pink makes her comfortable", 
+      "She likes natural scenery", 
+      "Her mother likes it", 
+      "She likes pink"],
+      answer: 3, 
+      rationale: "Di dalam teks'My Room', penulis menyatakan: 'I painted it pink because it's my favorite color,' yang berarti dia menyukai warna pink. "
   },
-  {
-    question: "Complete the sentence: 'I usually ... breakfast at 6 o'clock in the morning.'",
-    options: ["Eat", "Eating", "Eaten", "Ate"],
-    answer: 0,
-    rationale: "The sentence uses 'usually' which indicates a habit, thus requiring the Simple Present Tense ('eat')."
+{ 
+  //No.17
+  question: "When does the writer use the encyclopedias?", 
+  image: "images/p10_soal_16.jpg", 
+  options: [ 
+    "In the morning", 
+    "In her spare time", 
+    "When she studies", 
+    "When she wakes up" ], 
+  answer: 2, 
+  rationale: "Berdasarkan teks 'My Room', penulis secara spesifik menyebutkan bahwa ensiklopedia membantunya saat ia sedang belajar ('the encyclopedias help me when I study')."
+ },
+{ 
+  //No. 18
+  question: "What is the purpose of the text?", 
+  image: "images/p10_soal_16.jpg", 
+  options: [ 
+    "To ask the reader to paint their room pink", 
+    "To tell the reader how to decorate a room", "To tell about the writer’s hobby", "To describe the writer’s room" ], 
+  answer: 3, 
+  rationale: "Teks tersebut bertujuan untuk mendeskripsikan kamar penulis (descriptive text), terlihat dari detail mengenai warna ruangan, letak meja, dan benda-benda di dalamnya." 
+},
+{ 
+  //No.19
+  question: "From the text we know that there are... in the writer’s room.", 
+  image: "images/p10_soal_16.jpg", 
+  options: [ "Two alarm clock", "Three windows", "Some pictures", "Two pillows" ], 
+  answer: 2, rationale: "Dalam teks tertulis 'I put pictures of natural scenery on the wall', yang mengonfirmasi adanya beberapa gambar di dinding kamar tersebut."
+ },
+  { 
+    //No.20
+    question: "It is monkey. He is clever animal and funny. What does he likes to eat?", 
+    image: "images/p11_soal_20.jpg", 
+    options: [ "He likes eat vegetable", "He likes eat meat", "He likes eat fish", "He likes eat fruit" ], 
+    answer: 3, rationale: "Monyet dikenal sebagai hewan pemakan buah-buahan (frugivora), dan gambar ilustrasi menunjukkan monyet sedang memegang pisang." 
   },
-  {
-    question: "What is the synonym of the word 'ANCIENT'?",
-    options: ["Modern", "Old", "New", "Quick"],
-    answer: 1,
-    rationale: "Ancient means belonging to the very distant past and no longer in existence, which is a synonym for 'old'."
+{ 
+  //No.21
+  question: "Mrs. Rossy : Good afternoon, students. Students : Good afternoon, Ma'am. The underlined utterance is an expression of ...", 
+  //image: "images/p11_soal_21.jpg", 
+  options: [ "Greeting", "Leave-taking", "Introduction", "Prohibition" ], 
+  answer: 0, rationale: "Ungkapan 'Good afternoon' merupakan bentuk salam atau sapaan (greeting) yang digunakan pada waktu siang atau sore hari." 
+},
+{ 
+  //No.22
+  question: "This thing is usually found in the bedroom. It is a long narrow pillow or cushion filled with cotton, down or fibre. It is called ...", 
+  //image: "images/p11_soal_22.jpg", 
+  options: [ "Pillow", "Bolster", "Blanket", "Jug" ], 
+  answer: 1, rationale: "Bantal yang berbentuk panjang dan sempit seperti yang dideskripsikan disebut dengan guling (bolster)." 
+},
+{ 
+  //No.23
+  question: "It is a kitchen utensil. It is a type of pot, typically metal, specialized for boiling water, with a lid, spout and handle. What is it?", 
+  //image: "images/p11_soal_23.jpg", 
+  options: [ "Jug", "Kettle", "Sink", "Grater" ], 
+  answer: 1, rationale: "Alat dapur berbahan logam yang memiliki tutup, corong, dan pegangan khusus untuk merebus air disebut ketel (kettle)." 
+},
+  { 
+    //No.24
+    question: "She ... me a birthday cake today.", 
+    //image: "images/p11_soal_24.jpg", 
+    options: [ "make", "makes", "made", "had made" ], 
+    answer: 2, rationale: "Kalimat ini menunjukkan aksi yang sudah selesai dilakukan pada hari ini (kue sudah dibuat), sehingga menggunakan bentuk Simple Past Tense yaitu 'made'." 
   },
-  {
-    question: "Choose the correct preposition: 'The book is ... the table.'",
-    options: ["In", "On", "Under", "At"],
-    answer: 1,
-    rationale: "The preposition 'on' is used to indicate that something is resting on the surface of something else."
-  },
-  {
-    question: "Rearrange these words into a good sentence: 'goes - to - she - everyday - school'",
-    options: ["She everyday goes to school", "She goes to school everyday", "Everyday school to goes she", "To school she goes everyday"],
-    answer: 1,
-    rationale: "The correct sentence structure in English is Subject (She) + Verb (goes) + Place (to school) + Time (everyday)."
-  },
-  {
-    question: "What is the opposite of 'CLEAN'?",
-    options: ["Empty", "Dirty", "Messy", "Rough"],
-    answer: 1,
-    rationale: "The direct antonym or opposite of clean is dirty."
-  },
-  {
-    question: "In an invitation, 'R.S.V.P.' means ....",
-    options: ["Please reply", "See you there", "Dress code required", "Bring your own food"],
-    answer: 0,
-    rationale: "R.S.V.P. stands for the French phrase 'Répondez s'il vous plaît', which means 'Please respond'."
-  },
-  {
-    question: "Which sentence is correct?",
-    options: ["They is playing football.", "They are playing football.", "They am playing football.", "They plays football."],
-    answer: 1,
-    rationale: "In Present Continuous, plural subjects like 'They' must be followed by the auxiliary verb 'are'."
-  },
-  {
-    question: "A person who teaches students at school is a ....",
-    options: ["Doctor", "Teacher", "Driver", "Chef"],
-    answer: 1,
-    rationale: "The definition of a teacher is someone whose job is to teach in a school."
-  },
-  {
-    question: "The plural form of 'MOUSE' is ....",
-    options: ["Mouses", "Mice", "Mice s", "Meese"],
-    answer: 1,
-    rationale: "The word 'mouse' is an irregular noun; its plural form is 'mice'."
-  },
+{ 
+  //No.25
+  question: "How do you call your grandparents' daughter?", 
+  //image: "images/p11_soal_25.jpg", 
+  options: [ "Sister", "Aunt", "Cousin", "Niece" ], 
+  answer: 1, rationale: "Anak perempuan dari kakek dan nenek (grandparents) adalah saudara perempuan dari orang tua kita, yang dalam bahasa Inggris disebut sebagai 'Aunt' (Bibi)." 
+},
+{ 
+  //No.26
+  question: "Sinonim dari kata Bonanza adalah ....", 
+  image: "images/p12_soal_26.jpg", 
+  options: [ "Perayaan", "Peternakan", "Daerah subur", "Sumber kesenangan" ], 
+  answer: 3, rationale: "Menurut KBBI, Bonanza berarti sumber keuntungan atau kebahagiaan yang besar, sehingga pilihan 'Sumber kesenangan' adalah sinonim yang paling mendekati." 
+},
+{ 
+  //No.27
+  question: "Sinonim dari kata Zenit adalah ....", 
+  //image: "images/p12_soal_27.jpg", 
+  options: [ 
+    "Langit", "Bintang", "Puncak", "Jenis batu" ], 
+  answer: 2, rationale: "Zenit adalah titik di langit yang berada tepat di atas kepala pengamat, yang secara istilah berarti titik puncak atau posisi tertinggi." 
+},
+{ 
+  //No.28
+  question: "Sinonim dari kata Ekskavasi adalah ....", 
+  //image: "images/p12_soal_28.jpg", 
+  options: [ "Penggalian", "Tangga elevator", "Pertolongan", "Pengerukan" ], answer: 0, rationale: "Ekskavasi merupakan istilah teknis yang merujuk pada proses penggalian, khususnya dalam bidang arkeologi untuk menemukan benda bersejarah." 
+},
+{ 
+  //No.29
+  question: "Antonim dari kata Disabilitas adalah ....", 
+  //image: "images/p12_soal_29.jpg", 
+  options: [ "Tuli", "Buta", "Tuna", "Normal" ], answer: 3, rationale: "Disabilitas merujuk pada keterbatasan fisik atau mental, sehingga lawan kata (antonim) yang paling tepat dalam konteks ini adalah 'Normal'." },
+
+{ 
+  //NO.30
+  question: "Antonim dari kata Baru adalah ....", 
+  //image: "images/p12_soal_30.jpg", 
+  options: [ "Lama", "Anyar", "Usang", "Basi" ], answer: 0, rationale: "Lawan kata atau antonim yang paling umum dan tepat untuk kata 'Baru' adalah 'Lama'." },
+
+{ 
+  //No.31
+  question: "Antonim dari kata Muai adalah ....", 
+  //image: "images/p12_soal_31.jpg", 
+  options: [ "Panas", "Besar", "Panjang", "Susut" ], answer: 3, rationale: "Memuai berarti bertambah besar atau panjang karena panas, sedangkan lawan katanya adalah 'Susut' yang berarti berkurang atau mengecil." 
+},
+{ 
+  //No.32
+  question: "PRESIDEN : NEGARA =", 
+  //image: "images/p13_soal_32.jpg", 
+  options: [ "Rumah : atap", "Kepala : rambut", "Menteri : instruksi", "Ayah : keluarga" ], answer: 3, rationale: "Presiden adalah pemimpin atau kepala dari sebuah Negara, sebagaimana Ayah adalah pemimpin atau kepala dalam sebuah Keluarga." },
+
+{ 
+  //No.33
+  question: "KUPU-KUPU : KATAK =", 
+  //image: "images/p13_soal_33.jpg", 
+  options: [ "Sapi : kerbau", "Ayam : sapi", "Kambing : burung", "Pesawat : kapal" ], answer: 0, rationale: "Kupu-kupu dan Katak memiliki kesamaan kategori sebagai hewan yang mengalami metamorfosis. Pasangan Sapi dan Kerbau dipilih karena keduanya memiliki kesamaan kategori yang sangat dekat, yaitu sesama hewan mamalia/ruminansia." },
+
+{ 
+  //No.34
+  question: "OTONOMI : MANDIRI =", 
+  //image: "images/p14_soal_34.jpg", 
+  options: [ "Cerdas : banyak akal", "Bensin : mesin", "Sabun : mandi", "Masyarakat : rakyat" ], answer: 0, rationale: "Otonomi memiliki hubungan sinonim dengan Mandiri. Hubungan yang sama terdapat pada kata Cerdas yang bersinonim dengan Banyak akal." },
+
+{ 
+  //No.35
+  question: "HEWAN : ... = MAKANAN : LONTONG", 
+  //image: "images/p14_soal_35.jpg", 
+  options: [ "Air", "Sarapan", "Kenyang", "Sapi" ], answer: 3, rationale: "Lontong adalah salah satu jenis dari Makanan. Dengan pola yang sama, Sapi adalah salah satu jenis dari Hewan." 
+},
+{ 
+  //No.36
+  question: "What is the synonym of produce?", 
+  //image: "images/p15_soal_36.jpg", 
+  options: [ "buy", "make", "sell", "find" ], answer: 1, rationale: "Kata 'produce' berarti menghasilkan atau membuat sesuatu, sehingga sinonim yang paling tepat adalah 'make'." },
+
+{ 
+  //No.37
+  question: "What is the synonym of quit?", 
+  //image: "images/p15_soal_37.jpg", 
+  options: [ "fire", "accept", "stop", "hire" ], answer: 2, rationale: "Kata 'quit' berarti berhenti atau meninggalkan suatu aktivitas, yang memiliki arti yang sama dengan 'stop'." },
+
+{ 
+  //No.38
+  question: "What is the synonym of increase?", 
+  //image: "images/p15_soal_38.jpg", 
+  options: [ "subtract", "remove", "decrease", "Grow" ], answer: 3, rationale: "Kata 'increase' berarti bertambah besar atau banyak, sehingga sinonim yang tepat adalah 'Grow'." },
+
+{ 
+  //No.39
+  question: "What is the antonym of trust?", 
+  //image: "images/p15_soal_39.jpg", 
+  options: [ "think", "doubt", "understand", "believe" ], answer: 1, rationale: "Antonim atau lawan kata dari 'trust' (percaya) adalah 'doubt' (ragu atau sangsi)." },
+
+{ 
+  //No.40
+  question: "What is the antonym of build?", 
+  //image: "images/p15_soal_40.jpg", 
+  options: [ "make", "destroy", "start", "create" ], answer: 1, rationale: "Kata 'build' berarti membangun, sehingga lawan kata (antonim) yang paling tepat adalah 'destroy' (menghancurkan)." },
+
+{ 
+  //NO.41
+  question: "What is the antonym of let?", 
+  //image: "images/p15_soal_41.jpg", 
+  options: [ "clap", "deny", "laugh", "Allow" ], answer: 1, rationale: "Kata 'let' berarti membiarkan atau mengizinkan. Lawan kata yang tepat adalah 'deny' (menolak atau tidak mengizinkan)." },
+
+{ 
+  //NO.42
+  question: "MOUNTAIN : HIGH", 
+  //image: "images/p15_soal_42.jpg", 
+  options: [ "river : ugly", "valley : low", "forest : lonely", "desert : wet" ], answer: 1, rationale: "Analogi ini menggunakan hubungan karakteristik: Gunung (mountain) bersifat tinggi (high). Maka, lembah (valley) bersifat rendah (low)." 
+},
+{ question: "TEACHER : EDUCATE =", 
+  //image: "images/p16_soal_43.jpg", 
+  options: [ "senator : represent", "lawyer : instruct", "coach : condemn", "priest : annoy"], answer: 0, rationale: "Hubungan analogi ini didasarkan pada profesi dan fungsi utamanya. Seorang Guru (Teacher) bertugas untuk Mendidik (Educate), sebagaimana seorang Senator bertugas untuk Mewakili (Represent)." },
+
+{ question: "GOLD : EXPENSIVE =", 
+  //image: "images/p16_soal_44.jpg", 
+  options: [ "jewelry : dull", "cotton : beautiful", "silver : outrageous", "velvet : soft"], answer: 3, rationale: "Analogi ini menggunakan hubungan benda dan karakteristik khasnya. Emas (Gold) memiliki sifat Mahal (Expensive), sebagaimana Beludru (Velvet) memiliki sifat Lembut (Soft)." },
+
+{ question: "MOTHER : FEMALE =", 
+  //image: "images/p16_soal_45.jpg", 
+  options: [ "vegetable : green", "snake : dangerous", "rock : hard", "tree : old"], answer: 2, rationale: "Analogi ini menunjukkan sifat atau kategori mutlak yang melekat pada subjek. Seorang Ibu (Mother) pastilah Perempuan (Female), sedangkan sebuah Batu (Rock) pastilah Keras (Hard)." 
+},
 
   // --- MATEMATIKA (21-35) ---
-  {
-    question: "Sebuah foto berukuran 3 cm x 4 cm akan diperbesar 5 kali. Perbandingan luas foto sebelum dan sesudah diperbesar adalah ....",
-    options: ["1 : 5", "1 : 25", "1 : 10", "25 : 1"],
-    answer: 1,
-    rationale: "Perbandingan luas adalah kuadrat dari faktor skala perbesaran sisi. $5^2 = 25$. Maka perbandingannya 1 : 25."
+  { 
+    //No.46
+    question: "Kemungkinan buku yang dibeli adalah ...", 
+    //image: "images/p17_soal_46.jpg", 
+    options: [ "Pulang dan Si Anak Kuat", "Berjuta Rasanya dan Pulang", "Rindu dan Pergi", "Pulang dan Pergi" ], 
+    answer: 3, rationale: "Berdasarkan batasan harga pada teks referensi (yang biasanya menyertai soal AKM ini), kombinasi buku 'Pulang' dan 'Pergi' memiliki total harga yang sesuai dengan anggaran yang dimiliki pembeli." },
+
+{ 
+  //No.47
+  question: "Jeni masih punya beberapa tabungan. Ia ingin membeli dengan judul yang berbeda. Judul buku yang mungkin dibeli oleh Jeni yaitu ...", 
+  //image: "images/p17_soal_47.jpg", 
+  options: [ "Si Anak Kuat dan Berjuta Rasanya", "Pulang dan Rindu", "Rindu dan Pergi", "Si Anak Kuat dan Pergi" ], answer: 0, rationale: "Pilihan A (Si Anak Kuat dan Berjuta Rasanya) merupakan kombinasi dua judul yang sesuai dengan sisa tabungan Jeni menurut daftar harga yang tersedia." 
+},
+{ question: "Nana, kakak Jeni, ingin membeli novel karya Tere Liye yang berjudul Pulang. Nana bisa membayar dengan sejumlah uang sebagai berikut:", 
+  image: "images/p18_soal_48.jpg", 
+  options: [ 
+    "1 dan 2", "2 dan 3", "3 dan 4", "2 dan 4"] ,//Lembar uang Rp50.000, Rp20.000, dan Rp2.000 (Total Rp72.000)", 
+    //"Lembar uang Rp50.000, Rp20.000, dan Rp5.000 (Total Rp75.000)", 
+    //"Lembar uang Rp50.000, Rp10.000, dan Rp10.000 (Total Rp70.000)", 
+    //"Satu lembar uang kertas khusus Rp75.000 (Total Rp75.000)" ], 
+    answer: 3, 
+    rationale: "Berdasarkan teks literasi mengenai daftar harga buku, novel 'Pulang' karya Tere Liye memiliki harga Rp75.000. Oleh karena itu, pilihan yang benar adalah kombinasi uang yang berjumlah tepat Rp75.000, yaitu pilihan kedua (Rp50.000 + Rp20.000 + Rp5.000) dan pilihan keempat (lembar uang Rp75.000)." }  ,
+{
+  question: "Seminggu kemudian Jeni membeli novel Tere Liye lagi dan mendapat diskon 20% setiap buku. Ia membeli tiga judul buku, yaitu Si Anak Kuat, Rindu, dan Pergi. Jeni membayar dengan uang dua lembar seratus ribuan. Berapa kembalian yang diterima Jeni?",
+  //image: "images/p19_soal_49.jpg",
+options: [
+"Rp28.000",
+"Rp32.000",
+"Rp35.000",
+"Rp40.000"
+],
+answer: 1,
+rationale: "Berdasarkan harga wacana, harga buku Si Anak Kuat adalah Rp60.000, Rindu Rp75.000, dan Pergi Rp75.000. Total harga sebelum diskon adalah $60.000 + 75.000 + 75.000 = 210.000$. Setelah diskon 20%, harga menjadi $210.000 \times 0,8 = 168.000$. Dengan uang Rp200.000 (dua lembar seratus ribuan), kembaliannya adalah $200.000 - 168.000 = 32.000$."
+},
+
+{ 
+  //No.50
+  question: "Berdasarkan data berat buah (1 apel = 150 gram, 2 pisang = 180 gram, 5 rambutan = 125 gram, dan 3 jeruk = 360 gram), berapakah total berat dari kombinasi buah (1 jeruk, 1 apel, dan 4 buah rambutan)?", 
+  //image: "images/p20_soal_50_full.jpg", 
+  options: [ "430 gram", "370 gram", "450 gram", "480 gram" ], 
+  answer: 1, rationale: "Berdasarkan data: berat 1 apel adalah 150 gram. Berat 1 jeruk adalah 120 gram (360 gram / 3). Berat 4 buah rambutan adalah 100 gram (karena 5 buah adalah 125 gram, maka 1 buah = 25 gram). Total perhitungan: 120 + 150 + 100 = 370 gram." 
+},
+{ question: "Angka yang menempati tempat puluhan adalah ...", 
+  image: "images/p21_soal_51.jpg", 
+  options: [ "Angka 8 pada kalium", "Angka 2 pada kalsium", "Angka 6 pada beta karoten", "Angka 8 pada vitamin A" ], 
+  answer: 0, rationale: "Berdasarkan data nutrisi pepaya, angka puluhan pada kalium adalah 8 (karena Kalium = 182 mg); oleh karena itu jawaban yang paling tepat adalah pilihan pertama." 
+},
+{ question: "Berdasarkan wacana nutrisi buah pepaya, manakah pernyataan berikut yang benar?", 
+  //image: "images/p21_soal_52.jpg", 
+  options: [ "Buah pepaya memiliki kandungan nutrisi vitamin A lebih besar dari pada beta karoten.", "Kandungan nutrisi vitamin C pada buah pepaya sebesar 60-120 miligram.", "Kalium dan kalsium pada buah pepaya memiliki jumlah yang sama.", "Kandungan vitamin A pada buah pepaya sebesar 18,7-74,0 mikrogram." ], answer: 1, rationale: "Pilihan kedua benar karena teks menyebutkan kandungan Vitamin C pada pepaya sebesar 60-120 mg." 
+},
+
+{
+question: "Anis memiliki rumah dengan denah yang terdiri atas 3 bagian, yaitu bagian A (5,5m x 4m), bagian B (4,5m x 3m), dan bagian C (2m x 3,5m). Ayah Ani ingin membeli keramik A (ukuran 25cm x 20cm) yang rencananya akan dipasang pada bagian C. Jika harga setiap keramik A adalah Rp8.700,-, berapa rupiah yang harus dibayar Ayah Ani untuk membeli keramik A tersebut?",
+image: "images/p22_soal_53.jpg",
+options: [
+"Rp1.217.280,-",
+"Rp1.217.500,-",
+"Rp1.218.000,-",
+"Rp1.220.000,-"],
+answer: 2,
+rationale: "Langkah pertama adalah menghitung luas bagian C yaitu $2\text{ m} \times 3,5\text{ m} = 7\text{ m}^2$ atau $70.000\text{ cm}^2$. Langkah kedua, hitung luas satu keramik A yaitu $25\text{ cm} \times 20\text{ cm} = 500\text{ cm}^2$. Jumlah keramik yang dibutuhkan adalah $70.000 / 500 = 140$ buah. Total biaya yang harus dibayar adalah $140 \times \text{Rp8.700} = \text{Rp1.218.000}$."
+},
+{
+  //No.54
+  question: "Berdasarkan denah rumah Anis, pasangkanlah luas bagian denah dengan jumlah keramik yang dibutuhkan secara tepat. Manakah pernyataan berikut yang benar?",
+  //image: "images/p23_soal_54.jpg",
+  options: ["Luas denah bagian A (22 m²) membutuhkan 1,4 keramik A","Luas denah bagian B (13,5 m²) membutuhkan 1,5 keramik B","Luas denah bagian C (7 m²) membutuhkan 4,4 keramik A","Luas dengan bagian A dan B (35,5 m²) membutuhkan 1,5 keramik B"],answer: 1,rationale: "Perhitungannya adalah: Untuk bagian B ($13,5\text{ m}^2$), jika menggunakan keramik B ($30\text{ cm} \times 30\text{ cm} = 0,09\text{ m}^2$), maka $13,5 / 0,09 = 150$ buah (tertulis 1,5 dalam ratusan). Untuk bagian A ($22\text{ m}^2$) dengan keramik A ($0,05\text{ m}^2$), butuh $22 / 0,05 = 440$ (seharusnya pasangannya 4,4). Untuk bagian C ($7\text{ m}^2$) dengan keramik A, butuh $7 / 0,05 = 140$ (seharusnya pasangannya 1,4)."
+},
+  {question: "Ibu Ani ingin memasang pagar bambu di sekeliling rumahnya dengan jarak setiap pagar 5 cm. Berdasarkan denah rumah Anis (Bagian A: 5,5m x 4m; Bagian B: 4,5m x 3m; Bagian C: 2m x 3,5m), berapa jumlah bambu yang harus dipersiapkan?",
+    //image: "images/p23_soal_55.jpg",
+    options: ["700 buah","701 buah","350 buah","750 buah"],answer: 0,rationale: "Keliling luar denah dihitung sebagai berikut: Sisi utara ($5,5 + 4,5 = 10\text{m}$), sisi timur ($3\text{m}$), bawah bagian B ($4,5\text{m}$), selisih tinggi A & B ($1\text{m}$), bawah bagian A ($3,5\text{m}$), sisi tegak C ($3,5\text{m} \times 2 = 7\text{m}$), bawah C ($2\text{m}$), dan sisi barat A ($4\text{m}$). Total keliling = $10 + 3 + 4,5 + 1 + 3,5 + 7 + 2 + 4 = 35\text{ meter}$ atau $3.500\text{ cm}$. Jumlah bambu = $3.500 / 5 = 700$ buah."
   },
-  {
-    question: "Perbandingan banyaknya kelereng Joko dan Zaki adalah 4 : 6. Bila jumlah kelereng mereka adalah 80, maka banyaknya kelereng Zaki adalah ....",
-    options: ["32 buah", "48 buah", "60 buah", "24 buah"],
-    answer: 1,
-    rationale: "Jumlah kelereng Zaki = $(6 / (4+6)) \\times 80 = (6 / 10) \\times 80 = 48$ buah."
+  {question: "Pada bagian samping rumah yaitu pada bagian B (panjang 4,5m dan lebar 3m), Ibu Ani ingin meletakkan beberapa pot bunga dengan jarak 50 cm untuk setiap potnya. Berapa jumlah pot bunga yang harus disiapkan oleh Ibu Ani?",
+    //image: "images/p23_soal_56.jpg",
+    options: ["14 buah","15 buah","16 buah","20 buah"],answer: 1,rationale: "Bagian samping luar dari denah B terdiri dari sisi sepanjang 4,5 meter dan 3 meter. Total panjang sisi luar B adalah $4,5 + 3 = 7,5\text{ meter}$ atau $750\text{ cm}$. Dengan jarak antar pot 50 cm, maka jumlah pot yang dibutuhkan adalah $750 / 50 = 15$ buah."
   },
-  {
-    question: "Perbandingan uang Adi dan Tuti adalah 3 : 5. Jika jumlah uang mereka Rp300.000,00, maka selisih uang mereka adalah ....",
-    options: ["Rp75.000,00", "Rp112.500,00", "Rp187.500,00", "Rp150.000,00"],
-    answer: 0,
-    rationale: "Selisih uang = $((5-3) / (3+5)) \\times 300.000 = (2 / 8) \\times 300.000 = 75.000$."
-  },
-  {
-    question: "Umur Adi 1/2 dari umur Bondan, sedangkan umur Citra 5/4 dari umur Bondan. Jika umur Citra 20 tahun, maka jumlah umur Adi dan Bondan adalah ....",
-    options: ["24 tahun", "26 tahun", "30 tahun", "35 tahun"],
-    answer: 0,
-    rationale: "Umur Bondan = $(4/5) \\times 20 = 16$. Umur Adi = $(1/2) \\times 16 = 8$. Jumlah = $16 + 8 = 24$ tahun."
-  },
-  {
-    question: "Sebuah tongkat sepanjang 70 cm dipotong menjadi 3 bagian. Rasio potongan 1 : 2 = 2 : 3 dan rasio potongan 2 : 3 = 4 : 5. Ukuran tongkat terpanjang adalah ....",
-    options: ["16 cm", "24 cm", "30 cm", "36 cm"],
-    answer: 2,
-    rationale: "Rasio gabungan A:B:C = 8:12:15. Total rasio 35. Bagian terpanjang = $(15/35) \\times 70 = 30$ cm."
-  },
-  {
-    question: "Hasil dari $5^2 + \\sqrt{64} + 20^2 + \\sqrt{900}$ adalah ....",
-    options: ["580", "375", "463", "158"],
-    answer: 2,
-    rationale: "$25 + 8 + 400 + 30 = 463$."
-  },
-  {
-    question: "Azka menabung Rp25.000 di bank. Setelah satu tahun, tabungannya menjadi Rp28.000. Bunga tabungan per bulan adalah ....",
-    options: ["1,0%", "1,2%", "1,4%", "1,5%"],
-    answer: 0,
-    rationale: "Bunga setahun = $3.000 / 25.000 = 12\\%$. Bunga sebulan = $12\\% / 12 = 1\\%$."
-  },
-  {
-    question: "Persegi panjang EFGH memiliki luas 10 satuan. Jika koordinat E(1,1) dan F(3,1), maka koordinat G dan H adalah ....",
-    options: ["(3,6) dan (6,6)", "(3,6) dan (1,6)", "(6,3) dan (6,1)", "(6,6) dan (1,6)"],
-    answer: 1,
-    rationale: "Panjang EF = 2. Luas 10 = $2 \\times$ Lebar. Lebar = 5. Titik y bergeser ke $1+5=6$."
-  },
-  {
-    question: "Banyaknya rusuk dan sisi pada bangun ruang tabung berturut-turut adalah ....",
-    options: ["4 dan 3", "3 dan 3", "2 dan 3", "0 dan 3"],
-    answer: 2,
-    rationale: "Tabung memiliki 2 rusuk (lingkaran atas dan bawah) serta 3 sisi (tutup, alas, dan selimut)."
-  },
-  {
-    question: "Sebuah bak mandi berisi air penuh dengan debit 120 liter/jam selama 1 1/4 jam. Jika bak yang sama diisi dengan debit 100 liter/jam, waktu yang dibutuhkan adalah ....",
-    options: ["1 jam 45 menit", "1 jam 30 menit", "1 jam 40 menit", "1 jam 25 menit"],
-    answer: 1,
-    rationale: "Volume = $120 \\times 1,25 = 150$ liter. Waktu = $150 / 100 = 1,5$ jam = 1 jam 30 menit."
-  },
-  {
-    question: "Seseorang memiliki kartu angka 2, 1, dan 6. Bilangan tiga angka terkecil yang bisa dibentuk adalah ....",
-    options: ["216", "126", "162", "261"],
-    answer: 1,
-    rationale: "Urutkan angka dari yang terkecil sebagai ratusan, puluhan, dan satuan: 1, 2, 6."
-  },
-  {
-    question: "Berapa porsi 'Mie Ayam Komplit' (Rp15.000) yang dibeli jika total belanja beserta es teh (Rp3.000) adalah Rp72.000? (Uang Rp100.000, kembalian Rp28.000)",
-    options: ["3 porsi", "4 porsi", "5 porsi", "6 porsi"],
-    answer: 1,
-    rationale: "Total belanja = $72.000$. Harga per paket = $15.000 + 3.000 = 18.000$. $72.000 / 18.000 = 4$ porsi."
-  },
-  {
-    question: "Besar sudut terkecil yang terbentuk antara jarum panjang dan jarum pendek pada pukul 16.40 adalah ....",
-    options: ["120 derajat", "110 derajat", "100 derajat", "105 derajat"],
-    answer: 2,
-    rationale: "Posisi jarum jam: $4 \\times 30 + (40/60) \\times 30 = 140^\\circ$. Posisi jarum menit: $40 \\times 6 = 240^\\circ$. Selisih = $240 - 140 = 100^\\circ$."
-  },
-  {
-    question: "Jika luas daerah trapesium BCDE adalah 42 cm2 (terdiri dari 2 segitiga identik), maka luas daerah trapesium ABCD (terdiri dari 3 segitiga identik) adalah ....",
-    options: ["60 cm2", "63 cm2", "66 cm2", "68 cm2"],
-    answer: 1,
-    rationale: "Luas 1 segitiga = $42 / 2 = 21$. Luas 3 segitiga = $3 \\times 21 = 63$."
-  },
-  {
-    question: "Dadu bersisi 1 cm akan dimasukkan ke kotak balok berukuran 5 cm x 4 cm x 3 cm. Banyak dadu maksimal yang muat adalah ....",
-    options: ["80 buah", "60 buah", "40 buah", "120 buah"],
-    answer: 1,
-    rationale: "Volume Balok = $5 \\times 4 \\times 3 = 60~cm^3$. Volume dadu = $1 \\times 1 \\times 1 = 1~cm^3$. Muat 60 buah."
-  },
+{question: "Jika diketahui persamaan akar pangkat tiga sebagai berikut: $\sqrt[3]{64} + \sqrt[3]{343} - \sqrt[3]{729} = n$ dan $\sqrt[3]{1728} : \sqrt[3]{64} = m$. Berapakah nilai hasil dari $m + n$?",
+  image: "images/p24_soal_57.jpg",
+  options: ["05","10","15","20"],answer: 0,rationale: "Pertama, cari nilai $n$: $\sqrt[3]{64}=4$, $\sqrt[3]{343}=7$, dan $\sqrt[3]{729}=9$. Maka $n = 4 + 7 - 9 = 2$. Kedua, cari nilai $m$: $\sqrt[3]{1728}=12$. Maka $m = 12 : 4 = 3$. Hasil dari $m + n$ adalah $3 + 2 = 5$."
+},{
+  question: "Banyaknya sisi dan rusuk pada bangun ruang kubus berturut-turut adalah...",
+  //image: "images/p24_soal_58.jpg",
+  options: ["8 dan 12","12 dan 6","6 dan 4","6 dan 12"],answer: 3,rationale: "Bangun ruang kubus memiliki karakteristik fisik yang terdiri dari 6 sisi berbentuk persegi yang kongruen dan 12 rusuk yang sama panjang."
+},
+{
+  question: "Setiap naik 80 meter, suhu udara di luar pesawat akan turun 0,50 derajat Celsius. Jika ketinggian pesawat naik 2.400 meter, berapakah suhu udara di luar pesawat (asumsi titik awal 0°C)?",
+  //image: "images/p24_soal_59.jpg",
+  options: ["-15 °C","-19 °C","-30 °C","-49 °C"],answer: 0,rationale: "Hitung berapa kali kenaikan 80 meter terjadi: $2.400 / 80 = 30$ kali kenaikan. Total penurunan suhu adalah $30 \times 0,50 = 15$ derajat Celsius. Karena suhu turun, maka hasilnya adalah -15 °C."
+},
+{question: "Diberikan informasi pemegang kartu bilangan sebagai berikut: Budi (61%), Dinda (0,7), Ade (0,68), dan Yuda (5/9). Jika mereka diminta berdiri berurutan mulai dari yang memegang angka terkecil, maka urutannya adalah...",
+  //image: "images/p24_soal_60.jpg",
+  options: ["Yuda, Budi, Ade, Dinda","Dinda, Yuda, Budi, Ade","Budi, Dinda, Ade, Yuda","Yuda, Ade, Dinda, Budi"],answer: 0,rationale: "Konversi semua bilangan ke desimal: Yuda ($5/9 \approx 0,55$), Budi ($61\\% = 0,61$), Ade (0,68), dan Dinda ($0,7 = 0,70$). Urutan dari terkecil adalah 0,55 (Yuda), 0,61 (Budi), 0,68 (Ade), dan 0,70 (Dinda)."
+},
+  
 
   // --- IPA (36-55) ---
-  {
-    question: "Ketika sebuah cakram warna yang berisi spektrum pelangi diputar dengan sangat cepat, warna yang akan terlihat adalah ....",
-    options: ["Warna hitam", "Warna putih", "Tidak berwarna", "Warna merah dominan"],
-    answer: 1,
-    rationale: "Ini adalah fenomena dispersi terbalik di mana gabungan spektrum warna pelangi yang diputar cepat akan dipersepsikan oleh mata sebagai warna putih."
-  },
-  {
-    question: "Mengapa gerhana matahari total hanya dapat dilihat dari lokasi tertentu di Bumi?",
-    options: ["Bayangan Bulan sangat kecil dibanding luas Bumi.", "Matahari memancarkan cahaya lebih kuat di area lain.", "Bumi terlalu besar untuk tertutup bayangan.", "Bayangan Bumi menutupi Bulan sepenuhnya."],
-    answer: 0,
-    rationale: "Gerhana matahari total hanya terjadi di area yang terkena bayangan inti (Umbra) Bulan, yang ukurannya relatif kecil di permukaan bumi."
-  },
-  {
-    question: "Tahap awal sosialisasi seorang bayi untuk belajar berbicara terjadi di lingkungan ....",
-    options: ["Sekolah", "Masyarakat", "Keluarga", "Teman sebaya"],
-    answer: 2,
-    rationale: "Keluarga adalah unit terkecil masyarakat dan merupakan agen sosialisasi primer di mana proses belajar pertama terjadi."
-  },
-  {
-    question: "Jenis sendi yang memungkinkan gerakan berputar pada leher adalah ....",
-    options: ["Sendi Peluru", "Sendi Putar", "Sendi Engsel", "Sendi Pelana"],
-    answer: 1,
-    rationale: "Sendi putar memungkinkan rotasi satu tulang di atas tulang lainnya, seperti yang terjadi pada persambungan tulang leher."
-  },
-  {
-    question: "Pengubahan protein menjadi molekul yang lebih sederhana oleh enzim pepsin terjadi di dalam organ ....",
-    options: ["Mulut", "Lambung", "Usus Halus", "Kerongkongan"],
-    answer: 1,
-    rationale: "Lambung memproduksi asam klorida dan enzim pepsin untuk memecah protein menjadi pepton."
-  },
-  {
-    question: "Planet yang dijuluki sebagai 'Bintang Fajar' atau 'Bintang Kejora' karena kecerahannya adalah ....",
-    options: ["Merkurius", "Venus", "Mars", "Jupiter"],
-    answer: 1,
-    rationale: "Venus tampak paling cerah di langit Bumi setelah Matahari dan Bulan, sering terlihat sebelum fajar atau sesudah matahari terbenam."
-  },
-  {
-    question: "Perubahan wujud benda dari gas menjadi padat (seperti terbentuknya embun beku) disebut ....",
-    options: ["Menyublim", "Mengkristal", "Menguap", "Mengembun"],
-    answer: 1,
-    rationale: "Mengkristal atau deposisi adalah perubahan wujud zat dari fasa gas langsung ke fasa padat."
-  },
-  {
-    question: "Sifat cahaya yang memungkinkan terbentuknya pelangi di langit setelah hujan adalah ....",
-    options: ["Dapat dipantulkan", "Dapat merambat lurus", "Dapat diuraikan (dispersi)", "Dapat menembus benda bening"],
-    answer: 2,
-    rationale: "Butiran air hujan berfungsi sebagai prisma yang menguraikan cahaya matahari menjadi spektrum warna pelangi."
-  },
-  {
-    question: "Bagian bunga yang berfungsi sebagai alat kelamin jantan adalah ....",
-    options: ["Putik", "Mahkota bunga", "Benang sari", "Kelopak bunga"],
-    answer: 2,
-    rationale: "Benang sari menghasilkan serbuk sari yang merupakan sel kelamin jantan pada tumbuhan."
-  },
-  {
-    question: "Hubungan antara kerbau dan burung jalak merupakan contoh simbiosis ....",
-    options: ["Mutualisme", "Parasitisme", "Komensalisme", "Amensalisme"],
-    answer: 0,
-    rationale: "Simbiosis mutualisme adalah hubungan yang menguntungkan kedua pihak; kerbau bersih dari kutu, burung jalak mendapat makanan."
-  },
-  {
-    question: "Zat yang memiliki bentuk tidak tetap namun volumenya tetap adalah ....",
-    options: ["Zat Padat", "Zat Cair", "Zat Gas", "Zat Antara"],
-    answer: 1,
-    rationale: "Zat cair memiliki volume yang tetap meskipun bentuknya berubah mengikuti wadah yang ditempatinya."
-  },
-  {
-    question: "Benda langit yang memiliki ekor panjang dan arah ekornya selalu menjauhi matahari disebut ....",
-    options: ["Asteroid", "Meteorid", "Komet", "Satelit"],
-    answer: 2,
-    rationale: "Komet terdiri dari es dan debu yang menguap saat mendekati matahari, menghasilkan ekor yang ditiup angin matahari menjauhi pusat tata surya."
-  },
-  {
-    question: "Kelainan darah yang menyebabkan penderita mengalami darah sukar membeku saat luka adalah ....",
-    options: ["Anemia", "Hemofilia", "Leukemia", "Thalassemia"],
-    answer: 1,
-    rationale: "Hemofilia adalah penyakit keturunan yang mengganggu mekanisme pembekuan darah secara normal."
-  },
-  {
-    question: "Penyebab terjadinya 4 musim di negara beriklim subtropis adalah ....",
-    options: ["Rotasi Bumi", "Rotasi Bulan", "Revolusi Bumi", "Revolusi Bulan"],
-    answer: 2,
-    rationale: "Kemiringan poros Bumi saat melakukan revolusi (mengelilingi Matahari) mengakibatkan perbedaan intensitas penyinaran di berbagai belahan Bumi."
-  },
-  {
-    question: "Urutan jenis gaya yang bekerja pada: (1) Magnet menarik paku, (2) Kelapa jatuh, (3) Kipas angin berputar, adalah ....",
-    options: ["Magnet, Pegas, Listrik.", "Magnet, Gravitasi, Gerak.", "Gesek, Magnet, Otot.", "Listrik, Gravitasi, Magnet."],
-    answer: 1,
-    rationale: "(1) Gaya magnet, (2) Gaya gravitasi menarik benda ke bawah, (3) Gaya dari energi listrik menghasilkan gerak kipas."
-  },
-  {
-    question: "Alat elektronik yang mengubah energi listrik menjadi energi gerak adalah ....",
-    options: ["Setrika dan Solder", "Kipas angin dan Mixer", "Radio dan Televisi", "Lampu dan Senter"],
-    answer: 1,
-    rationale: "Motor listrik di dalam kipas angin dan mixer menggunakan arus listrik untuk menciptakan putaran atau gerak mekanik."
-  },
-  {
-    question: "Bagian mata yang berfungsi mengatur jumlah cahaya yang masuk adalah ....",
-    options: ["Retina", "Pupil", "Lensa Mata", "Kornea"],
-    answer: 1,
-    rationale: "Pupil akan mengecil saat cahaya terang untuk melindungi mata dan membesar saat cahaya redup."
-  },
-  {
-    question: "Perubahan energi pada kincir angin pembangkit listrik adalah ....",
-    options: ["Energi Kimia ke Listrik", "Energi Gerak ke Listrik", "Energi Listrik ke Gerak", "Energi Panas ke Gerak"],
-    answer: 1,
-    rationale: "Generator pada kincir angin mengubah energi kinetik/gerak dari putaran baling-baling menjadi energi listrik."
-  },
-  {
-    question: "Cara yang tepat untuk mengembangbiakkan tanaman pisang adalah ....",
-    options: ["Mencangkok batang", "Menanam tunasnya", "Menanam bijinya", "Melalui umbi lapis"],
-    answer: 1,
-    rationale: "Pisang berkembang biak secara vegetatif alami melalui pertumbuhan tunas dari pangkal induknya."
-  },
-  {
-    question: "Bagian termos yang berfungsi menghambat perpindahan panas secara radiasi adalah ....",
-    options: ["Tutup gabus/plastik", "Ruang hampa udara (vakum)", "Lapisan mengkilap perak di dinding dalam", "Dinding kaca tebal"],
-    answer: 2,
-    rationale: "Permukaan yang mengkilap berfungsi sebagai pemantul radiasi panas agar energi panas tetap tertahan di dalam air."
+  { question: "Perhatikan daftar perubahan zat berikut:\n(1) Air menguap\n(2) Lilin meleleh\n(3) Rasa susu menjadi asam\n(4) Bom meledak\n(5) Nasi menjadi bubur\n(6) Besi berkarat\n(7) Kapur barus menguap\n(8) Kertas menjadi arang\n\nBerdasarkan daftar di atas, perubahan zat yang merupakan perubahan fisika dan perubahan kimia berturut-turut adalah nomor ....", 
+    //image: "images/p25_soal_61.jpg", 
+    options: [ "(1) dan (5)", "(2) dan (6)", "(3) dan (7)", "(4) dan (8)" ], 
+    answer: 1, rationale: "Perubahan fisika ditunjukkan oleh nomor (2) lilin meleleh karena hanya terjadi perubahan wujud tanpa menghasilkan zat baru. Perubahan kimia ditunjukkan oleh nomor (6) besi berkarat karena terjadi reaksi oksidasi yang menghasilkan zat baru. Pilihan lain seperti (3), (4), dan (8) merupakan perubahan kimia, sedangkan (1), (5), dan (7) adalah perubahan fisika." 
   },
 
+  { question: "Perhatikan gambar-gambar yang menunjukkan fenomena cahaya berikut:\n1. Terbentuknya pelangi di langit\n2. Pensil yang tampak patah saat dimasukkan ke dalam gelas berisi air\n3. Pembentukan bayangan tangan di dinding menggunakan cahaya senter\n\nSifat cahaya yang terdapat pada gambar di atas berturut-turut adalah ....", 
+    image: "images/p26_soal_62.jpg", options: [ "dapat dibelokkan, dapat dipantulkan, dan dapat diserap", "merambat cepat, menembus benda bening, dan memiliki energi", "diuraikan, dapat dibiaskan, dan merambat lurus", "dapat dilihat, dapat dipolarisasikan, dan dapat diinterferensikan" ], answer: 2, rationale: "Berdasarkan prinsip optika: (1) Pelangi adalah contoh cahaya yang diuraikan (dispersi). (2) Pensil yang tampak patah terjadi karena pembiasan cahaya (refraksi) saat melewati dua medium berbeda (udara dan air). (3) Bayangan terbentuk karena cahaya merambat lurus sehingga terhalang oleh benda tidak tembus cahaya." 
+
+  },
+
+  { question: "Berdasarkan gambar tersebut, perubahan bentuk energi yang terjadi pada dinamo jika sepeda dikayuh adalah ....", 
+    image: "images/p27_soal_63.jpg", options: [ "energi gerak → energi listrik → energi cahaya", "energi magnet → energi gerak → energi cahaya", "energi kimia → energi magnet → energi cahaya", "energi listrik → energi kimia → energi cahaya" ], answer: 0, rationale: "Proses perubahan energi pada sistem tersebut dimulai dari kayuhan sepeda yang menghasilkan energi gerak (kinetik). Dinamo kemudian mengubah energi gerak tersebut menjadi energi listrik, yang akhirnya diubah menjadi energi cahaya oleh lampu sepeda." 
+
+  },
+  { question: "Perhatikan tabel berikut!\n\n| No | Jenis batuan | Fungsi |\n| :--- | :--- | :--- |\n| 1 | Apung | Bahan baku kapur tulis |\n| 2 | Obsidian | Bahan perekat |\n| 3 | Kuarsa | Bahan baku kaca |\n| 4 | Granit | Bahan baku marmer |\n\nPernyataan pada tabel di atas yang tidak sesuai antara jenis batuan dengan fungsinya adalah nomor ....", 
+    image: "images/p28_soal_64.jpg", options: [ "1", "2", "3", "4" ], answer: 2, rationale: "Berdasarkan ilmu geologi dasar: (1) Batu Apung digunakan untuk mengamplas/menghaluskan kayu. (2) Batu Obsidian digunakan untuk alat pemotong atau perhiasan. (3) Batu Kuarsa adalah bahan baku pembuatan kaca (Pernyataan ini Sesuai). (4) Batu Granit digunakan untuk bahan bangunan/lantai, bukan bahan baku marmer. Mengingat pilihan jawaban hanya tersedia satu nomor, kemungkinan terdapat kesalahan redaksi pada soal yang seharusnya menanyakan pernyataan yang 'Sesuai' (Nomor 3)." 
+
+  },
+  { question: "Adaptasi tumbuhan di atas terhadap lingkungan air adalah ....", 
+    image: "images/p29_soal_65.jpg", options: [ "berdaun lebar, tipis, dan banyak stomata", "berdaun kecil, tipis, dan banyak stomata", "berdaun kecil, tebal, dan sedikit stomata", "berdaun lebar, akar lebat, dan kokoh" ], answer: 0, rationale: "Tumbuhan pada gambar adalah teratai, yang merupakan tumbuhan hidrofit (hidup di air). Adaptasi utama teratai terhadap lingkungan air meliputi daun yang lebar dan tipis untuk memudahkan penguapan air dan meningkatkan daya apung, serta memiliki banyak stomata di permukaan atas daunnya untuk memperlancar proses transpirasi di lingkungan lembap." 
+
+  },
+  { question: "Usaha yang paling tepat untuk memperbaiki fungsi hutan sebagai daerah resapan air yang telah rusak berdasarkan ilustrasi tersebut adalah ....", image: "images/p30_soal_66.jpg", options: [ "Penanaman berbagai jenis tumbuhan di hutan tersebut", "Menjadikan hutan sebagai daerah pemukiman warga", "Pemanfaatan tanaman kecil untuk bahan kerajinan", "Memanfaatkan hutan sebagai sumber kayu untuk industri kertas" ], answer: 0, rationale: "Ilustrasi menjelaskan hilangnya fungsi hutan sebagai daerah resapan air akibat pemanfaatan yang salah. Upaya perbaikan yang paling efektif adalah reboisasi atau penanaman kembali berbagai jenis tumbuhan (pilihan A) agar akar-akar pohon dapat kembali menyerap dan menahan air di dalam tanah." },
+
+{ question: "Pernyataan berikut ini yang menunjukkan bukan merupakan tujuan dari perilaku hibernasi pada hewan adalah ....", 
+  //image: "images/p30_soal_67.jpg", 
+  options: [ "Menghemat energi karena ketersediaan makanan yang terbatas", "Menghindari pengaruh cuaca yang sangat dingin", "Menunggu datangnya musim kawin", "Mengurangi tingkat aktivitas selama musim tertentu" ], answer: 2, rationale: "Hibernasi adalah mekanisme adaptasi hewan untuk bertahan hidup di kondisi lingkungan ekstrem dengan cara menghemat energi, menghindari suhu dingin, dan meminimalisir aktivitas (pilihan A, B, dan D). Hibernasi tidak dilakukan dengan tujuan utama untuk menunggu datangnya musim kawin (pilihan C)." 
+},
+{
+  question: "Perhatikan beberapa jenis penyakit berikut!\n1. Leukemia\n2. Anoreksia\n3. Pneumonia\n4. Thalasemia\n5. Hemophilia\n\nBerdasarkan daftar tersebut, penyakit yang berkaitan dengan sistem peredaran darah ditunjukkan oleh nomor ....",
+  options: [
+    "1, 2, dan 3",
+    "1, 4, dan 5",
+    "2, 3, dan 4",
+    "3, 4, dan 5"
+  ],
+  answer: 1,
+  rationale: "Penyakit yang menyerang sistem peredaran darah adalah Leukemia (kanker darah), Thalasemia (kelainan hemoglobin), dan Hemophilia (darah sulit membeku). Sedangkan Anoreksia adalah gangguan makan dan Pneumonia adalah infeksi pada paru-paru (sistem pernapasan)."
+},
+{ question: "Berikut ini adalah upaya-upaya manusia untuk mendukung pelestarian hutan, kecuali ....", 
+  //image: "images/p31_soal_69.jpg", 
+  options: [ "menggunakan kertas secara hemat", "membuang sampah pada tempatnya", "melaksanakan kegiatan reboisasi", "melakukan kegiatan tebang pilih" ], answer: 1, rationale: "Menghemat kertas, reboisasi, dan tebang pilih adalah upaya spesifik yang berhubungan langsung dengan pelestarian hutan dan keberadaan pohon. Membuang sampah pada tempatnya adalah perilaku terpuji untuk menjaga kebersihan lingkungan secara umum, namun bukan merupakan upaya spesifik pelestarian hutan dibandingkan pilihan lainnya." 
+
+},
+
   // --- IPS (56-75) ---
-  {
-    question: "Kerajaan Samudera Pasai berkembang pesat karena lokasinya di jalur strategis ....",
-    options: ["Tepi Sungai Mahakam", "Selat Malaka", "Pantai Utara Jawa", "Selat Sunda"],
-    answer: 1,
-    rationale: "Selat Malaka adalah urat nadi perdagangan maritim dunia yang menghubungkan India dan Timur Tengah dengan Tiongkok."
+  { question: "Contoh usaha yang bergerak di bidang distribusi adalah ....", 
+    //image: "images/p31_soal_70.jpg", 
+    options: [ "perusahaan asuransi, perusahaan penerbangan, dan pegadaian", "perusahaan tekstil, industri pembuat sepatu, dan penjahit pakaian", "toko buku, warung internet, dan pasar swalayan", "usaha pariwisata, restoran tradisional, dan perusahaan pembuat batik" ], answer: 2, rationale: "Distribusi adalah kegiatan menyalurkan barang atau jasa dari produsen ke konsumen. Toko buku dan pasar swalayan adalah contoh nyata unit usaha yang berfungsi menyalurkan barang jadi kepada pembeli/konsumen akhir." 
+  },
+
+{ question: "Kegiatan ekonomi yang merupakan kegiatan produksi ditunjukkan oleh nomor .... \n (1) Mengadakan pameran komputer \n (2) Mengekspor minyak \n (3) Menjual makanan di pasar \n (4) Membuat olahan kayu bekas menjadi mainan", 
+  //image: "images/p31_soal_71.jpg", 
+  options: [ "A. (1)", "B. (2)", "C. (3)", "D. (4)" ], answer: 3, rationale: "Produksi adalah kegiatan menghasilkan barang atau meningkatkan nilai guna suatu benda. Membuat olahan kayu bekas menjadi mainan (nomor 4) adalah aktivitas menciptakan barang baru yang memiliki nilai guna lebih tinggi." },
+
+{ question: "Seseorang akan menanamkan modal dalam sebuah badan usaha yang berbentuk perseroan terbatas (PT). Orang tersebut harus membeli ....", 
+  //image: "images/p31_soal_72.jpg", 
+  options: [ "obligasi", "retribusi", "kuitansi", "saham" ], answer: 3, rationale: "Perseroan Terbatas (PT) adalah badan usaha yang modalnya terbagi atas saham-saham. Oleh karena itu, bukti kepemilikan atau penyertaan modal dalam PT dilakukan dengan cara membeli saham." 
+},
+{ question: "Daerah yang termasuk waktu Indonesia bagian tengah (WITA) adalah ....", 
+  //image: "images/p32_soal_73.jpg", 
+  options: [ "Kalimantan Timur, Bali, dan Lombok", "Kalimantan Barat, Sumatera, dan Jawa", "Sulawesi, Maluku, dan Irian Jaya", "Kalimantan Selatan, Nusa Tenggara, dan Irian Jaya" ], 
+  answer: 0, 
+  rationale: "Waktu Indonesia Tengah (WITA) mencakup wilayah Sulawesi, Bali, Nusa Tenggara (termasuk Lombok), serta Kalimantan Selatan, Timur, dan Utara. Pilihan B termasuk WIB (Sumatera, Jawa), sedangkan pilihan C dan D mencakup WIT (Maluku, Irian Jaya)." },
+
+{ question: "Negara tetangga yang mempunyai batas landas kontinen dengan Indonesia adalah ....", 
+  //image: "images/p32_soal_74.jpg", 
+  options: [ "Kamboja, Australia, dan Philipina", "Brunei Darussalam, Malaysia, dan Singapura", "Philipina, Singapura, dan Malaysia", "Brunei Darussalam, Australia, dan Papua Nugini" ], 
+  answer: 3, 
+  rationale: "Indonesia memiliki perjanjian batas landas kontinen dengan India, Thailand, Malaysia, Vietnam, Papua Nugini, dan Australia. Berdasarkan pilihan yang tersedia, opsi D adalah yang paling mendekati karena mencantumkan Australia dan Papua Nugini sebagai negara yang berbatasan landas kontinen secara resmi dengan Indonesia." 
+},
+
+{ question: "Pemimpin perlawanan rakyat Makasar terhadap VOC yang dibantu oleh Karaeng Tallo adalah ....", 
+  //image: "images/p32_soal_75.jpg", 
+  options: [ "Sultan Salahuddin", "Sultan Hasanuddin", "Sultan Khairun", "Sultan Mughayat Syah" ], 
+  answer: 1, 
+  rationale: "Sultan Hasanuddin adalah Raja Gowa ke-16 yang memimpin perlawanan rakyat Makassar melawan VOC. Dalam perjuangannya, ia dibantu oleh Karaeng Tallo yang juga merupakan Mangkubumi Kerajaan Gowa-Tallo." 
+},
+  { question: "Bu Amirah memberikan tugas membuat karya dari bahan barang bekas kepada siswa kelas 6. Tugas tersebut diselesaikan secara kelompok. Setiap kelompok terdiri 5 anak yang telah ditentukan berdasarkan jarak rumah mereka. Hari Minggu Budi, Doni, dan Rian mengerjakan tugas kelompok dari bu Amirah di rumah Siti sejak pagi. Kelima anak tersebut beragama Islam. Mereka membuat vas bunga dari handuk bekas. Tak terasa waktu menunjukkan pukul 11 lebih 30 menit dan adzan Dhuhur berkumandang. Rumah Siti berdekatan dengan masjid. Tindakan yang seharusnya dilakukan oleh kelima anak tersebut adalah ....", 
+    //image: "images/p33_soal_76.jpg", 
+    options: [ "melanjutkan membuat vas bunga sampai selesai tanpa mempedulikan adzan Dhuhur.", "menghentikan membuat vas bunga dan menuju ke masjid untuk melaksanakan shalat Dhuhur.", "menghentikan membuat vas bunga dan pamit pulang ke rumah masing-masing untuk shalat Dhuhur." ], answer: 1, rationale: "Berdasarkan nilai religius dan sikap disiplin dalam beribadah, tindakan yang paling tepat bagi seorang Muslim saat mendengar adzan adalah segera menunaikan shalat. Mengingat posisi rumah Siti yang berdekatan dengan masjid, pilihan untuk shalat berjamaah di masjid merupakan tindakan yang paling utama sebelum melanjutkan tugas kelompok." 
+
   },
   {
-    question: "Patih Majapahit yang sangat berjasa menyatukan wilayah Nusantara adalah ....",
-    options: ["Ken Arok", "Gajah Mada", "Raden Wijaya", "Mulawarman"],
-    answer: 1,
-    rationale: "Mahapatih Gajah Mada mengikrarkan Sumpah Palapa untuk menyatukan kepulauan Nusantara di bawah payung Majapahit."
+    question: "Edo sering membuat masalah dengan memanggil teman-temannya menggunakan nama orang tua mereka. Suatu hari, Rani menangis karena perbuatan Edo. Ibu Dewi kemudian menasihati Edo dan memintanya meminta maaf kepada Rani. Tindakan yang tepat dilakukan Edo adalah ....",
+    options: [
+      "Eo meminta maaf kepada Rani dan berjanji untuk memanggil Rani sesuai dengan namanya.",
+      "Edo meminta maaf kepada Rani dan berjanji untuk tidak memanggil nama Rani lagi.",
+      "Rani tidak memaafkan Edo jika Edo terus memanggilnya dengan sebutan nama orang tua.",
+      "Edo dan Rani saling meminta maaf karena sama-sama bersalah dan Edo memanggil Rani sesuai dengan namanya."
+    ],
+    answer: 0,
+    rationale: "Sebagai pihak yang melakukan kesalahan (bullying), tindakan yang benar adalah mengakui kesalahan dengan meminta maaf secara tulus dan berjanji untuk memperbaiki perilaku tersebut dengan memanggil teman menggunakan nama yang semestinya."
   },
   {
-    question: "Perjanjian Bongaya (1667) ditandatangani oleh Belanda (VOC) dengan ....",
-    options: ["Kesultanan Banten", "Kesultanan Ternate", "Kesultanan Gowa (Makassar)", "Kerajaan Mataram Islam"],
+    question: "Bu Intan sedang memimpin diskusi kelas untuk persiapan pameran karya siswa. Ira sebenarnya memiliki banyak karya lukisan di rumah, namun ia belum menyampaikan pendapatnya saat diskusi. Ketika Bu Intan bertanya siapa lagi yang memiliki ide atau pendapat, tindakan yang tepat dilakukan Ira adalah ....",
+    options: [
+      "diam saja dan bersikap masa bodoh karena tidak disebut namanya oleh Bu Intan.",
+      "mengangkat tangan dan pura-pura menyampaikan ide untuk waktu pelaksanaannya.",
+      "berbisik dengan teman sebangku dengan mengatakan kalau dirinya mempunyai karya berupa lukisan.",
+      "Mengangkat tangan dan menyampaikan idenya kalau dia memiliki karya berupa lukisan."
+    ],
+    answer: 3,
+    rationale: "Dalam sebuah diskusi, setiap anggota diharapkan berpartisipasi aktif. Karena Ira memiliki karya yang relevan untuk dipamerkan, tindakan yang paling tepat dan komunikatif adalah mengangkat tangan untuk berbicara dan menyampaikan kontribusi karyanya kepada forum."
+  },
+  {
+    question: "Arga dan Fitri berniat bekerja sama saat ujian bahasa Indonesia. Lia menegur dan menasihati bahwa kerja sama hanya boleh dilakukan di luar ujian. Tindakan yang sebaiknya dilakukan Arga adalah ....",
+    options: [
+      "Menolak ajakan Lia karena berpegang teguh pada pendirian",
+      "Mengikuti saran Lia untuk tidak bekerja sama diluar ujian",
+      "Tetap bekerja sama dengan Lia atau teman sekelas lainnya",
+      "Mengikuti saran Lia untuk tidak bekerja sama dengan Fitri"
+    ],
+    answer: 3,
+    rationale: "Kejujuran adalah nilai utama dalam ujian. Arga sebaiknya mengikuti saran Lia untuk tidak bekerja sama atau menyontek agar nilai yang diperoleh merupakan hasil kerja keras sendiri."
+  },
+  {
+    question: "Pada hari Selasa, kamu datang ke sekolah paling awal dan mendapati kelas kotor, padahal kamu bukan petugas piket hari itu. Tindakanmu yang tepat adalah ....",
+    image: "images/p33_soal_80.jpg", 
+    options: [
+      "1 dan 2", //Memilih menunggu teman piket datang dan enggan membersihkan karena bukan jadwal piket",
+      "2 dan 3", //Segera menghubungi teman yang bertugas piket di hari itu",
+      "2 dan 4", //Membersihkan kelas sembari menunggu teman yang bertugas piket datang",
+      "1 dan 5" //Meminta bantuan petugas kebersihan atau orang lain yang sudah hadir untuk membersihkan kelas"
+    ],
     answer: 2,
-    rationale: "Sultan Hasanuddin menandatangani perjanjian ini setelah kalah dalam perang Makassar melawan aliansi VOC dan Aru Palaka."
+    rationale: "Menunjukkan sikap inisiatif dan tanggung jawab terhadap kebersihan lingkungan sekolah. Membersihkan kelas tanpa menunggu petugas piket adalah tindakan yang proaktif sehingga pilihan '2 dan 4' paling tepat."
   },
   {
-    question: "Salah satu hasil keputusan sidang PPKI pada tanggal 18 Agustus 1945 adalah ....",
-    options: ["Membentuk Tentara Keamanan Rakyat (TKR).", "Mengesahkan UUD 1945 dan memilih Presiden/Wakil Presiden.", "Menetapkan wilayah Indonesia menjadi 8 provinsi.", "Membentuk Partai Nasional Indonesia."],
-    answer: 1,
-    rationale: "Keputusan mendasar berdirinya Republik Indonesia diambil pada sidang pertama PPKI sehari setelah proklamasi."
-  },
-  {
-    question: "Arsitektur Menara Masjid Kudus yang menyerupai candi merupakan contoh akulturasi budaya ....",
-    options: ["Hindu dan Islam", "Islam dan Kristen", "Budha dan Konghucu", "Hindu dan Yunani"],
+    question: "Fajar tidak masuk sekolah karena terlambat bangun akibat menonton konser musik. Sebagai teman sekolahnya, tindakan yang tepat dilakukan adalah ....",
+    image: "images/p33_soal_81.jpg",
+    options: [
+      "1, 2, dan 3", //Menjenguk dan menasihatinya bahwa pendidikan lebih penting",
+      "1, 2, dan 4", //Menjenguknya untuk mengetahui alasan tidak masuk sekolah",
+      "1 dan 4", //Tidak menjenguknya karena sudah mengetahui bahwa dia anak tidak disiplin",
+      "4"//Memberi tahu guru apabila sudah mengetahui alasan dia tidak masuk sekolah"
+    ],
     answer: 0,
-    rationale: "Menara Masjid Kudus menggunakan struktur batu bata merah berundak khas candi Hindu Jawa sebagai menara adzan."
+    rationale: "Sebagai teman, tindakan yang tepat adalah menjenguk, menasihati secara membangun, dan membantu memberikan keterangan yang jujur kepada guru (pilihan '1, 2, dan 3')."
   },
   {
-    question: "UNESCO menetapkan Wayang Kulit sebagai mahakarya dunia pada tahun ....",
-    options: ["2001", "2003", "2005", "2009"],
-    answer: 1,
-    rationale: "Wayang Kulit secara resmi diakui sebagai Warisan Budaya Takbenda Dunia oleh UNESCO pada 7 November 2003."
+    question: "Suatu sekolah memiliki aturan larangan rambut panjang bagi siswa laki-laki. Fandi ditegur guru untuk segera memotong rambutnya, padahal ia sangat menyukai model rambutnya yang mirip idolanya. Tindakan yang sebaiknya dilakukan Fandi adalah ....",
+    options: [
+      "Segera memotong rambutnya sepulang sekolah",
+      "Menunggu sampai ditegur kembali, baru kemudian memotong rambutnya",
+      "Mempertahankan gaya rambutnya yang panjang saat ini",
+      "Membuat alasan agar dapat dimaklumi oleh guru"
+    ],
+    answer: 0,
+    rationale: "Mematuhi tata tertib sekolah dan mengikuti arahan guru merupakan wujud kedisiplinan siswa, meskipun harus mengesampingkan keinginan pribadi terkait gaya rambut."
   },
   {
-    question: "Provinsi Bangka Belitung merupakan hasil pemekaran dari provinsi ....",
-    options: ["Sumatera Barat", "Riau", "Sumatera Selatan", "Jambi"],
+    question: "Terdapat bencana banjir di Kabupaten X yang melanda wilayah luas. Teman-teman mengajakmu membantu, namun akses jalan menuju lokasi terdampak sangat sulit. Tindakan yang tepat dilakukan adalah ....",
+    image: "images/p33_soal_83.jpg",
+    options: [
+      "2 dan 3", //Meminta teman-teman menunda bantuan",
+      "1 dan 2", //Mengirim bantuan melalui badan bantuan bencana",
+      "2 dan 4", //Menjadi relawan dengan menyalurkan bantuan ke lokasi",
+      "1 dan 3"//Mengikuti penggalangan dana dan menunda datang ke lokasi"
+    ],
+    answer: 3,
+    rationale: "Ketika akses fisik sulit, menyalurkan bantuan melalui lembaga resmi atau berfokus pada penggalangan dana adalah cara yang paling efektif dan aman agar bantuan tetap sampai kepada yang membutuhkan (pilihan '1 dan 3')."
+  },
+  {
+    question: "Ken mengajak Rino bermain game online saat mereka sedang mengerjakan tugas sekolah di internet, padahal ibu Rino sudah berpesan agar ia tidak bermain game. Tindakan yang harus dilakukan oleh Rino adalah ....",
+    image: "images/p33_soal_84.jpg",
+    options: [
+      "1 dan 2", //Mengikuti ajakan Ken, karena game tersebut edisi terbaru",
+      "3 dan 4", //Bermain sebentar untuk menghilangkan rasa bosan",
+      "1 dan 4", //Menolak bermain game dan menyelesaikan tugasnya agar cepat selesai",
+      "2 dan 4" //Memprioritaskan mengerjakan tugas setelah itu dapat bermain atas izin ibunya"
+    ],
     answer: 2,
-    rationale: "Kepulauan Bangka Belitung resmi menjadi provinsi sendiri memisahkan diri dari provinsi Sumatera Selatan."
+    rationale: "Sikap tanggung jawab terhadap tugas dan kepatuhan terhadap perintah orang tua harus diutamakan. Menolak bermain game dan menyelesaikan tugas adalah tindakan yang paling tepat (pilihan '1 dan 4')."
   },
   {
-    question: "Faktor utama yang mendorong seseorang melakukan tindakan ekonomi disebut ....",
-    options: ["Prinsip ekonomi", "Motif ekonomi", "Hukum ekonomi", "Sistem ekonomi"],
-    answer: 1,
-    rationale: "Motif ekonomi adalah alasan, keinginan, atau dorongan yang membuat manusia melakukan tindakan ekonomi."
-  },
-  {
-    question: "Jika Kota B berpenduduk 1.200.000 jiwa dengan luas wilayah 800 km2, maka kepadatan penduduknya adalah ....",
-    options: ["1.000 jiwa/km2", "1.200 jiwa/km2", "1.500 jiwa/km2", "1.750 jiwa/km2"],
-    answer: 2,
-    rationale: "Kepadatan penduduk = Jumlah Penduduk / Luas Wilayah = $1.200.000 / 800 = 1.500$ jiwa/km²."
-  },
-  {
-    question: "Perusahaan asing yang berdiri di Indonesia memberikan dampak negatif yaitu ....",
-    options: ["Tersedianya lapangan pekerjaan.", "Meningkatkan devisa negara.", "Sebagian keuntungan dibawa ke negara asal.", "Pekerja Indonesia meningkat keterampilannya."],
-    answer: 2,
-    rationale: "Pelarian modal ke luar negeri (capital flight) merupakan kerugian bagi sirkulasi uang di dalam negeri."
-  },
-  {
-    question: "Upaya meningkatkan ekonomi kreatif oleh pemerintah dengan identifikasi kompetensi inti industri adalah bagian dari ....",
-    options: ["Pembuatan Road Map Industry.", "Menyiapkan insentif pajak.", "Membentuk Indonesia Creative Council.", "Memberikan perlindungan hukum."],
-    answer: 0,
-    rationale: "Peta Jalan Industri (Road Map) memuat perencanaan jangka panjang termasuk identifikasi kompetensi dan fasilitas."
-  },
-  {
-    question: "Suku bangsa yang berasal dari Pulau Sumatera adalah ....",
-    options: ["Minangkabau, Batak, Nias.", "Asmat, Dani, Gayo.", "Dayak, Banjar, Bugis.", "Toraja, Minahasa, Madura."],
-    answer: 0,
-    rationale: "Ketiga suku tersebut adalah penduduk asli di wilayah pulau Sumatera."
-  },
-  {
-    question: "Kerajaan Sriwijaya mengalami kemunduran salah satunya disebabkan oleh ....",
-    options: ["Serangan dari Kerajaan Majapahit dan Colamandala.", "Ditemukannya benua baru oleh penjelajah.", "Masuknya agama Kristen.", "Tenggelamnya pulau Sumatera."],
-    answer: 0,
-    rationale: "Tekanan militer eksternal melemahkan dominasi maritim Sriwijaya di kawasan Asia Tenggara."
-  },
-  {
-    question: "Keputusan Sidang I PPKI pada 18 Agustus 1945 mengangkat Presiden dan Wakil Presiden yaitu ....",
-    options: ["Ir. Soekarno dan Drs. Moh. Hatta.", "Soeharto dan Adam Malik.", "Radjiman Wedyodiningrat dan Sjahrir.", "Achmad Soebardjo dan Sayuti Melik."],
-    answer: 0,
-    rationale: "Soekarno dan Hatta terpilih secara aklamasi dalam sidang pertama PPKI."
-  },
-  {
-    question: "Badan usaha yang modalnya berasal dari simpanan anggota dengan asas kekeluargaan adalah ....",
-    options: ["PT (Perseroan Terbatas)", "BUMN", "Koperasi", "Firma"],
-    answer: 2,
-    rationale: "Koperasi berazaskan kekeluargaan dan dikelola dari, oleh, dan untuk anggotanya."
-  },
-  {
-    question: "Komoditas hasil perkebunan Indonesia yang menjadi unggulan ekspor non-migas adalah ....",
-    options: ["Kelapa sawit, Karet, Cokelat.", "Minyak bumi dan Batubara.", "Bauksit dan Nikel.", "Pasir kuarsa dan Garam."],
-    answer: 0,
-    rationale: "Produk perkebunan tersebut merupakan andalan ekspor komoditas pertanian Indonesia."
-  },
-  {
-    question: "Usaha menanggulangi abrasi pantai secara alami adalah dengan ....",
-    options: ["Membangun tanggul beton.", "Menanam hutan mangrove (bakau).", "Melakukan pengerukan pasir.", "Membuat sengkedan."],
-    answer: 1,
-    rationale: "Akar pohon bakau yang kuat menahan deburan ombak dan mengikat tanah di pesisir pantai."
-  },
-  {
-    question: "Konsep yang merujuk pada perbedaan horizontal di masyarakat tanpa tingkatan kasta disebut ....",
-    options: ["Stratifikasi sosial", "Diferensiasi sosial", "Mobilitas sosial", "Konflik sosial"],
-    answer: 1,
-    rationale: "Diferensiasi sosial adalah pengelompokan masyarakat berdasarkan suku, agama, ras tanpa hierarki."
-  },
-  {
-    question: "Perubahan relief permukaan bumi yang disebabkan oleh tenaga dari dalam bumi disebut tenaga ....",
-    options: ["Eksogen", "Endogen", "Mekanik", "Gravitasi"],
-    answer: 1,
-    rationale: "Tenaga endogen (tektonisme, vulkanisme) adalah tenaga yang berasal dari dalam perut bumi."
-  },
-  {
-    question: "Pemimpin perlawanan rakyat Makassar terhadap VOC yang dijuluki Ayam Jantan dari Timur adalah ....",
-    options: ["Sultan Hasanuddin", "Pangeran Diponegoro", "Sultan Baabullah", "Pattimura"],
-    answer: 0,
-    rationale: "Julukan tersebut diberikan oleh Belanda kepada Sultan Hasanuddin karena kegigihannya melawan VOC."
-  }
-];
+  question: "Murid-murid SDN Sidomulyo I sudah terbiasa untuk hidup bersih dan disiplin sehingga sekolah mereka tampak bersih dan indah. Ketika jam istirahat berbunyi, anak-anak dengan antusiasnya ke kantin untuk membeli makanan. Setelah makan, mereka tidak lupa membuang bungkus makanan ke tempat sampah yang ada di sekitar mereka. Kemudian saat jam istirahat usai, mereka masuk ke kelas dengan tertib dan siap untuk mengikuti pembelajaran dari guru dengan penuh semangat. Menurut kalian hal positif yang patut ditiru dari kebiasaan yang dilakukan murid di SDN Sidomulyo adalah....",
+  options: [
+    "1, 2, 4",//Masuk ke dalam kelas dengan budaya antre",
+    "1, 2, 3", //Semangat dalam belajar di sekolah",
+    "1, 3, 4", //Membiarkan bungkus makanan berserakan",
+    "4" //Membuang bungkus makanan ke tempat sampah"
+  ],
+  answer: 0,
+  rationale: "Berdasarkan teks, terdapat beberapa perilaku positif yang ditunjukkan oleh murid-murid tersebut: menjaga kebersihan dengan membuang sampah pada tempatnya, bersikap disiplin dengan masuk kelas secara tertib, serta memiliki antusiasme dan semangat yang tinggi dalam mengikuti pembelajaran."
+}
+  ];
 
 export default function App() {
   const [currentIdx, setCurrentIdx] = useState(0);
