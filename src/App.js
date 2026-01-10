@@ -1,12 +1,14 @@
 import React, { useState, useMemo } from 'react';
-import { CheckCircle, XCircle, ChevronLeft, ChevronRight, RotateCcw, Award, BookOpen, BarChart3, ListChecks, ArrowLeft, AlertCircle } from 'lucide-react';
+import { CheckCircle, XCircle, ChevronLeft, ChevronRight, RotateCcw, Award, BookOpen, BarChart3, ListChecks, ArrowLeft, AlertCircle,
+  Search
+ } from 'lucide-react';
 
 // Seluruh data soal Paket 3 (75 Soal)
 const quizData = [
   // --- BAHASA INDONESIA (1-10) ---
   {
     question: "Berdasarkan teks tentang Kebun Raya Bogor, apa yang menjadi identitas bangsa dan memberikan kontribusi pada pembangunan ekonomi global?",
-    image: "/images/p3_soal_01.jpg", // Path ke file gambar Anda
+    image: "images/p3_soal_01.jpg", // Path ke file gambar Anda
     options: ["Variasi jenis tanamannya saja", "Sejarah Kebun Raya Bogor", "Pusat penelitian biologi tropis", "Penemuan ilmiah bidang botani"],
     answer: 1,
     rationale: "Berdasarkan paragraf kedua, sejarah Kebun Raya Bogor menjadi identitas bangsa serta memberikan kontribusi pembangunan ekonomi global."
@@ -29,43 +31,95 @@ const quizData = [
     answer: 2,
     rationale: "Pernyataan C salah karena teks menyebutkan kekayaan warisan mencakup variasi jenis tanaman, bentang lahan, bangunan, artefak, dan ilmu botani secara umum, tidak hanya tanaman eksotis."
   },
-  {
-    question: "Antonim dari kata 'domestik' pada kalimat 'penelitian tanaman domestik berbagai tanaman ekspor' adalah ....",
-    options: ["Lokal", "Mancanegara", "Pedalaman", "Terpencil"],
+ {
+    question: "Apa yang menjadi ciri fisik paling unik dari ikan Blue Parrotfish yang membuatnya disebut mirip burung?",
+    image: "images/p3_soal_05.jpg", // Path ke file gambar Anda
+    options: [
+      "Memiliki warna kulit yang bisa berubah sesuai suhu air",
+      "Memiliki moncong berupa rahang dengan gigi yang menyatu",
+      "Mampu bermigrasi antar samudra dalam waktu singkat",
+      "Memiliki sirip dada yang lebar seperti sayap burung"
+    ],
     answer: 1,
-    rationale: "Domestik berarti dalam negeri atau lokal, sehingga lawan kata yang paling tepat adalah mancanegara atau luar negeri."
+    rationale: "Ciri paling khas dari Blue Parrotfish adalah susunan giginya yang menyatu pada rahang, membentuk struktur kuat menyerupai paruh burung kakaktua (parrot) yang digunakan untuk mengikis alga dari karang."
   },
-  {
-    question: "Makna kata 'inovasi' dalam teks tersebut adalah ....",
-    options: ["Penemuan baru yang berbeda dari sebelumnya", "Kegiatan mengumpulkan barang antik", "Proses meniru hasil karya orang lain", "Cara tradisional dalam bertani"],
-    answer: 0,
-    rationale: "Inovasi merujuk pada pemasukan atau pengenalan hal-hal baru; penemuan baru yang berbeda dari yang sudah ada atau yang sudah dikenal sebelumnya."
+  { question: "Bagaimana cara ikan Blue Parrotfish melindungi diri dari predator pada malam hari?", 
+    options: [ "Bersembunyi di wilayah Samudera Atlantik Barat", "Mengeluarkan lendir yang menutupi bau dan memiliki rasa pahit", "Mencari makan di karang mati yang dilapisi alga", "Bergerak dalam kelompok besar yang dipimpin oleh jantan" ], 
+    answer: 1, 
+    rationale: "Berdasarkan data pada tabel, Blue Parrotfish memiliki mekanisme perlindungan diri yang unik di malam hari dengan cara mengeluarkan lendir. Lendir ini berfungsi untuk menyamarkan bau mereka dari penciuman predator serta memberikan rasa pahit jika dimakan." 
   },
-  {
-    question: "Kata serapan dari bahasa asing yang terdapat pada teks tersebut adalah ....",
-    options: ["Botani", "Negara", "Pohon", "Warisan"],
-    answer: 0,
-    rationale: "Kata 'Botani' merupakan kata serapan dari bahasa Belanda 'botanie' atau bahasa Inggris 'botany'."
+  { question: "Apa ide pokok yang disampaikan pada teks tersebut?", 
+    options: [ "Blue Parrotfish adalah ikan yang hidup di terumbu karang", "Blue Parrotfish memiliki kemampuan unik berganti jenis kelamin", "Blue Parrotfish memiliki gigi kuat untuk menghancurkan karang", "Blue Parrotfish merupakan ikan biru dari Samudera Atlantik" ], 
+    answer: 0, 
+    rationale: "Ide pokok adalah gagasan utama yang menggambarkan subjek secara umum. Pilihan A merupakan pernyataan paling umum yang mencakup identitas dan habitat Blue Parrotfish." 
   },
-  {
-    question: "Kalimat yang menggunakan kata depan dengan tepat adalah ....",
-    options: ["Penelitian dilakukan di Kebun Raya Bogor.", "Dia pergi keluar negeri untuk belajar.", "Buku itu disimpan didalam tas.", "Sampah dibuang ke tempatnya."],
-    answer: 0,
-    rationale: "Kata depan 'di' yang menunjukkan tempat harus ditulis terpisah dari kata yang mengikutinya. Pilihan B dan C salah dalam penulisan (seharusnya 'ke luar' dan 'di dalam')."
+  { question: "Apa kesimpulan yang dapat diambil dari teks tentang Blue Parrotfish?", 
+    options: [ "Blue Parrotfish unik karena kemampuan mengganti jenis kelamin", "Blue Parrotfish hidup di terumbu karang dengan moncong rahang unik", "Blue Parrotfish merupakan hewan yang berperan penting dalam pembentukan pantai berpasir", "Blue Parrotfish merupakan spesies ikan yang langka" ], 
+    answer: 2, 
+    rationale: "Kesimpulan menekankan pada dampak atau peran penting subjek. Peran mereka dalam pembentukan pantai berpasir adalah poin ekologis utama dari eksistensi mereka." 
   },
-  {
-    question: "Tanda baca koma yang tepat pada teks tersebut digunakan untuk ....",
-    options: ["Memisahkan anak kalimat yang mendahului induk kalimat", "Pemerincian unsur-unsur dalam suatu kalimat", "Mengapit tambahan keterangan", "Memisahkan kutipan langsung"],
-    answer: 1,
-    rationale: "Tanda koma digunakan di antara unsur-unsur dalam suatu pemerincian atau pembilangan (contoh: kopi, teh, kina, ...)."
+  { question: "Pernyataan manakah yang paling sesuai mengenai jenis Teks 1 dan Teks 2?", 
+    image: "images/p3_soal_09.jpg", // Path ke file gambar Anda
+    options: [
+      "Teks 1 adalah sebuah pantun, sementara Teks 2 adalah sebuah puisi naratif.", 
+      "Teks 1 adalah sebuah puisi naratif, sementara Teks 2 adalah sebuah pantun.", 
+      "Kedua teks tersebut merupakan puisi naratif.", 
+      "Kedua teks tersebut merupakan pantun."] ,
+      answer: 3 ,
+      rationale: "Kedua teks merupakan pantun karena memiliki pola struktur yang sama, yaitu terdiri dari empat baris dengan rima tertentu (seperti rima a-b-a-b pada teks 1 dan teks 2) dalam setiap baitnya." 
   },
-  {
-    question: "Fungsi kata 'Sebut saja' pada awal kalimat di paragraf ketiga adalah ....",
-    options: ["Menjelaskan definisi baru", "Memberikan contoh konkret", "Menyimpulkan isi paragraf", "Menghubungkan dua paragraf berbeda"],
-    answer: 1,
-    rationale: "Frasa 'sebut saja' digunakan untuk memperkenalkan contoh konkret dari pernyataan sebelumnya mengenai penelitian tanaman."
+  { question: "Di mana letak sampiran pada Teks 1 dan Teks 2 berdasarkan struktur pantun?", 
+    options: ["Baris 1 dan 2", "Baris 2 dan 3", "Baris 3 dan 4", "Baris 1 dan 4"],
+    answer: 0, 
+    rationale: "Berdasarkan informasi pada poin pertama di tabel, struktur pantun yang benar memiliki sampiran pada baris 1 dan 2." 
   },
-
+  { question: "Kapan PNI dibubarkan oleh Belanda setelah pembelaan Sukarno dalam Indonesia Menggugat?", 
+    image: "images/p3_soal_11.jpg", // Path ke file gambar Anda
+    options: [
+      "Januari 1930", 
+      "Juni 1930", 
+      "Agustus 1930", "Desember 1930"], 
+      answer: 1, 
+      rationale: "Poin pertama pada tabel menyatakan bahwa PNI dibubarkan oleh Belanda pada Juni 1930 setelah pembelaan Sukarno dalam Indonesia Menggugat."
+   },
+   { question: "Mengapa Sukarno masuk penjara di Sukamiskin, Bandung, pada 29 Desember 1929?", 
+    options: [
+      "Karena ia melakukan tindakan kriminal murni", 
+      "Karena ia membela kebijakan pemerintah Belanda", 
+      "Karena ia mendirikan Partai Komunis Indonesia", 
+      "Karena aktivitas politiknya untuk mewujudkan Indonesia Merdeka"], 
+      answer: 3, 
+      rationale: "Sukarno dipenjarakan oleh pemerintah kolonial Belanda karena perjuangan politiknya melalui PNI yang dianggap membahayakan kekuasaan Belanda."        
+  },
+ { question: "Peristiwa apa yang mengubah Bujang Sembilan menjadi ikan menurut legenda tersebut?", 
+  image: "images/p3_soal_13.jpg", // Path ke file gambar Anda
+  options: [
+    "Kutukan dari Datuk Limbatang", 
+    "Adu silat dengan Giran", 
+    "Letusan Gunung Tinian", 
+    "Hukuman karena perbuatan mereka"], 
+    answer: 2, 
+    rationale: "Berdasarkan informasi poin nomor 4 pada tabel pernyataan, letusan Gunung Tinian adalah peristiwa yang mengubah Bujang Sembilan menjadi ikan." 
+  },
+  { 
+    question: "Hal yang terjadi setelah Giran dan Sani melompat ke dalam kawah gunung adalah...", 
+    options: [
+      "Gunung tersebut meletus dan menghancurkan segalanya.", 
+      "Mereka berhasil melarikan diri dan kembali ke perkampungan.", 
+      "Bujang Sembilan menjadi ikan.", 
+      "Mereka diberi pengampunan oleh penduduk kampung."], 
+    answer: 0, 
+    rationale: "Berdasarkan alur legenda tersebut, tindakan Giran dan Sani melompat ke kawah memicu letusan Gunung Tinian yang dahsyat. Peristiwa letusan inilah yang kemudian mengubah Bujang Sembilan menjadi ikan sesuai dengan informasi pada poin pernyataan di soal sebelumnya. "
+  },
+ { question: "Akibat dari letusan Gunung Tinjau menurut legenda tersebut adalah...", 
+  options: [
+    "Bujang Sembilan menjadi pemenang dalam adu silat.", 
+    "Kawah gunung berubah menjadi danau yang diberi nama Danau Maninjau.", 
+    "Sani dan Giran dipenjara karena perbuatan terlarang.", 
+    "Kukuban menikahi Sani setelah kejadian tersebut."], 
+    answer: 1, 
+    rationale: "Berdasarkan alur cerita legenda, letusan dahsyat Gunung Tinjau mengakibatkan kawah gunung tersebut berubah menjadi danau besar yang kemudian dikenal dengan nama Danau Maninjau. "
+ },
   // --- BAHASA INGGRIS (11-20) ---
   {
     question: "Read the following notice: 'NO SWIMMING IN THIS AREA'. Where would you likely find this notice?",
@@ -471,6 +525,7 @@ export default function App() {
   const [showResult, setShowResult] = useState(false);
   const [showReview, setShowReview] = useState(false);
   const [checkedQuestions, setCheckedQuestions] = useState(new Set());
+  const [zoomedImage, setZoomedImage] = useState(null);
 
   const handleAnswer = (optionIdx) => {
     if (checkedQuestions.has(currentIdx)) return;
@@ -544,12 +599,17 @@ export default function App() {
 
 {/* Gambar di halaman review */}
 {q.image && (
-  <div className="mb-4 rounded-xl overflow-hidden border border-slate-100 bg-white flex justify-center p-2">
-    <img 
-      src={q.image} 
-      alt="Visualisasi soal" 
-      className="max-w-full h-auto max-h-[200px] object-contain" 
-    />
+  <div className="mb-6 flex justify-center">
+    <div 
+      className="relative group cursor-zoom-in inline-block rounded-xl overflow-hidden border border-slate-100 bg-white p-2"
+      onClick={() => setZoomedImage(q.image)}
+    >
+      <img 
+        src={q.image} 
+        alt="Visualisasi soal" 
+        className="max-w-full h-auto max-h-[200px] object-contain rounded-lg transition-transform duration-300 group-hover:scale-105" 
+      />
+    </div>
   </div>
 )}
                   <div className="grid grid-cols-1 gap-3 mb-6">
@@ -649,12 +709,21 @@ export default function App() {
 
 {/* Logika Penambahan Gambar */}
 {q.image && (
-  <div className="mb-8 rounded-2xl overflow-hidden border border-slate-100 bg-slate-50 flex justify-center">
-    <img 
-      src={q.image} 
-      alt={`Visualisasi Soal ${currentIdx + 1}`} 
-      className="max-w-full h-auto object-contain max-h-[300px]" 
-    />
+  <div className="mb-8 flex justify-center">
+    <div 
+      className="relative group cursor-zoom-in inline-block rounded-2xl overflow-hidden border border-slate-200 bg-slate-100"
+      onClick={() => setZoomedImage(q.image)}
+    >
+      <img 
+        src={q.image} 
+        alt={`Visualisasi Soal ${currentIdx + 1}`} 
+        className="max-w-full h-auto object-contain max-h-[300px] transition-transform duration-300 group-hover:scale-105" 
+      />
+      {/* Overlay Ikon Kaca Pembesar saat Hover */}
+      <div className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/10 flex items-center justify-center">
+          <Search className="text-white opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg" size={32} />
+      </div>
+    </div>
   </div>
 )}
             <div className="grid grid-cols-1 gap-4">
@@ -698,7 +767,27 @@ export default function App() {
                 <div key={idx} onClick={() => navigateTo(idx)} className={`w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-black cursor-pointer transition-all border-2 ${currentIdx === idx ? 'border-blue-600 scale-110 shadow-sm' : 'border-transparent'} ${userAnswers[idx] !== undefined ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-400 hover:bg-slate-300'}`}>{idx + 1}</div>
             ))}
         </div>
-      </div>
+      </div> {/* Ini adalah penutup div "max-w-3xl mx-auto" */}
+
+      {/* --- TAMBAHKAN KOMPONEN MODAL ZOOM DI SINI (DI LUAR CONTAINER UTAMA) --- */}
+      {zoomedImage && (
+        // Overlay hitam transparan (fixed inset-0 bg-black/90 z-50)
+        <div 
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 animate-in fade-in duration-200 cursor-zoom-out"
+          onClick={() => setZoomedImage(null)} // Klik di mana saja untuk menutup
+        >
+          {/* Container gambar agar tetap rapi */}
+          <div className="relative max-w-4xl w-full h-full flex items-center justify-center">
+             <img 
+               src={zoomedImage} 
+               alt="Zoomed view" 
+               className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-300"
+             />
+             <p className="absolute bottom-4 text-white/70 text-sm bg-black/50 px-4 py-2 rounded-full">Klik di mana saja untuk menutup</p>
+          </div>
+        </div>
+      )}
+      {/* ----------------------------------------------------------------------- */}
     </div>
   );
 }
