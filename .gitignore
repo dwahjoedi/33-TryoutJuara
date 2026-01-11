@@ -5,6 +5,9 @@ node_modules/
 build/
 dist/
 
+# arsip code soal
+code_archive/
+
 # File konfigurasi pribadi/rahasia
 .env
 .env.local
